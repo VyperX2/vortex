@@ -13,4 +13,10 @@ export const {
 			clientSecret: process.env.GOOGLE_CLIENT_SECRET,
 		}),
 	],
+	callbacks: {
+		async signIn(user, account, profile) {
+			console.log(user, account, profile);
+			return true;
+		},
+	},
 });
