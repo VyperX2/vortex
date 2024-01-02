@@ -16,23 +16,23 @@ export const {
 		}),
 	],
 	callbacks: {
-		async signIn(user: any, account: any, profile: any) {
+		async signIn({ user, account, profile }) {
 			await connectToDB();
 			try {
-				const user = await User.findOne({ email: profile.email });
+				const user = await User.findOne({ email: profile?.email });
 
 				if (!user) {
 					const newUser = new User({
-						username: profile.name,
-						email: profile.email,
-						img: profile.image,
+						email: profile?.email,
+						username: profile?.name,
+						img: profile?.picture,
 					});
 
 					await newUser.save();
 				}
-
 				return true;
 			} catch (error) {
+				console.log(error);
 				return false;
 			}
 		},
