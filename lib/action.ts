@@ -2,7 +2,6 @@ import User from "@/models/User";
 import { signIn } from "./auth";
 import { connectToDB } from "./database";
 const bcrypt = require("bcrypt");
-
 interface formDataProps {
 	email: string;
 	username: string;
@@ -28,15 +27,14 @@ export const handleRegister = async (formData: any) => {
 	try {
 		await connectToDB();
 		const user = await User.findOne({ username });
+		const salt = await bcrypt.genSalt(10);
+		const hashedPasword = await bcrypt.hash(password, salt);
 
 		if (!user) {
-			const salt = await bcrypt.genSalt(10);
-			const hashedPassword = await bcrypt.hash(password, salt);
-
 			const newUser = new User({
 				username,
 				email,
-				password: hashedPassword,
+				password: hashedPasword,
 				img,
 			});
 
