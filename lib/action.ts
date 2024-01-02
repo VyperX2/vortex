@@ -26,7 +26,7 @@ export const handleRegister = async (formData: any) => {
 
 	try {
 		await connectToDB();
-		const user = User.findOne({ username: username });
+		const user = await User.findOne({ username });
 
 		if (!user) {
 			const newUser = new User({
@@ -37,6 +37,7 @@ export const handleRegister = async (formData: any) => {
 			});
 
 			await newUser.save();
+			console.log("NEW USER CREATED");
 		}
 	} catch (error) {
 		console.log(error);
