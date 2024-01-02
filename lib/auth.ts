@@ -1,7 +1,33 @@
 import NextAuth from "next-auth";
 import Google from "next-auth/providers/google";
+import CredentialsProvider from "next-auth/providers/credentials";
 import { connectToDB } from "./database";
 import User from "@/models/User";
+const bcrypt = require("bcrypt");
+
+const login = async (credentials) => {
+	try {
+		await connectToDB();
+		const user = User.findOne({ username: credentials.username });
+
+		if (!user) {
+			throw new Error("User does'nt exist");
+		}
+		const isPasswordCorrect = await bcrypt.compare(
+			credentials.password,
+			user.password
+		);
+
+		if (!isPasswordCorrect) {
+			throw new Error("Wrong Credentials");
+		}
+
+		return user;
+	} catch (error) {
+		console.log(error);
+		return null;
+	}
+};
 
 export const {
 	handlers: { GET, POST },
@@ -13,6 +39,16 @@ export const {
 		Google({
 			clientId: process.env.GOOGLE_ID,
 			clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+		}),
+		CredentialsProvider({
+			async authorize(credentials) {
+				try {
+					const user = await login(credentials);
+					return user;
+				} catch (error) {
+					return null;
+				}
+			},
 		}),
 	],
 	callbacks: {

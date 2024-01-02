@@ -47,3 +47,17 @@ export const handleRegister = async (formData: any) => {
 		console.log(error);
 	}
 };
+
+export const handleLogin = async (formData: any) => {
+	"use server";
+	const { username, password } = Object.fromEntries(formData);
+
+	try {
+		await signIn("credentials", {
+			username,
+			password,
+		});
+	} catch (error) {
+		console.log(error);
+	}
+};

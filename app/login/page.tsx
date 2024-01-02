@@ -7,20 +7,26 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card";
-import { handleGoogleLogin } from "@/lib/action";
+import { Input } from "@/components/ui/input";
+import { handleGoogleLogin, handleLogin } from "@/lib/action";
 import Link from "next/link";
 import { FaGoogle } from "react-icons/fa";
 const LoginPage = async () => {
 	return (
 		<section className="w-full h-screen flex items-center justify-center">
-			<Card>
+			<Card className="md:w-[400px]">
 				<CardHeader>
 					<CardTitle>Login to Vortex</CardTitle>
 					<CardDescription>
 						A Fullstack Social Media Appliaction
 					</CardDescription>
 				</CardHeader>
-				<CardContent>
+				<CardContent className="space-y-4">
+					<form className="space-y-4" action={handleLogin}>
+						<Input type="text" name="username" placeholder="Username" />
+						<Input type="password" name="password" placeholder="Password" />
+						<Button className="w-full">Login</Button>
+					</form>
 					<form className="w-full grid items-center" action={handleGoogleLogin}>
 						<Button className="gap-4">
 							Login with Google
@@ -30,7 +36,10 @@ const LoginPage = async () => {
 				</CardContent>
 				<CardFooter>
 					<Link className="text-sm" href="/register">
-						<span className="text-muted-foreground">Don't have an account?</span> Register here
+						<span className="text-muted-foreground">
+							Don't have an account?
+						</span>{" "}
+						Register here
 					</Link>
 				</CardFooter>
 			</Card>
