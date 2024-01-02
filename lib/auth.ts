@@ -5,10 +5,10 @@ import { connectToDB } from "./database";
 import User from "@/models/User";
 const bcrypt = require("bcrypt");
 
-const login = async (credentials) => {
+const login = async (credentials: any) => {
 	try {
 		await connectToDB();
-		const user = User.findOne({ username: credentials.username });
+		const user: any = User.findOne({ username: credentials.username });
 
 		if (!user) {
 			throw new Error("User does'nt exist");
