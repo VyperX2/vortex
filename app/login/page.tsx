@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/card";
 import { handleGoogleLogin } from "@/lib/action";
 import { FaGoogle } from "react-icons/fa";
-const RegisterPage = async () => {
+const LoginPage = async () => {
 	return (
 		<section className="w-full h-screen flex items-center justify-center">
 			<Card>
@@ -32,4 +32,4 @@ const RegisterPage = async () => {
 	);
 };
 
-export default RegisterPage;
+export default LoginPage;
