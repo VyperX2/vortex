@@ -4,10 +4,12 @@ import {
 	CardDescription,
 	CardContent,
 	CardTitle,
+	CardFooter,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { handleRegister } from "@/lib/action";
+import Link from "next/link";
 const RegisterPage = () => {
 	return (
 		<section className="w-full h-screen grid place-items-center">
@@ -31,6 +33,15 @@ const RegisterPage = () => {
 						<Button className="w-full">Register</Button>
 					</form>
 				</CardContent>
+				<CardFooter>
+					<Link className="text-sm" href="/login">
+						{" "}
+						<span className="text-muted-foreground">
+							Already have an account?
+						</span>{" "}
+						Login here
+					</Link>
+				</CardFooter>
 			</Card>
 		</section>
 	);

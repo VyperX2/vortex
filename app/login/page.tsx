@@ -8,6 +8,7 @@ import {
 	CardTitle,
 } from "@/components/ui/card";
 import { handleGoogleLogin } from "@/lib/action";
+import Link from "next/link";
 import { FaGoogle } from "react-icons/fa";
 const LoginPage = async () => {
 	return (
@@ -27,6 +28,11 @@ const LoginPage = async () => {
 						</Button>
 					</form>
 				</CardContent>
+				<CardFooter>
+					<Link className="text-sm" href="/register">
+						<span className="text-muted-foreground">Don't have an account?</span> Register here
+					</Link>
+				</CardFooter>
 			</Card>
 		</section>
 	);
