@@ -8,12 +8,12 @@ export const handleGoogleLogin = async () => {
 	await signIn("google");
 };
 
-export const handleRegister = async (formData: any) => {
+export const handleRegister = async (previousState: any, formData: any) => {
 	const { username, password, email, img, passwordRepeat } =
 		Object.fromEntries(formData);
 
 	if (password !== passwordRepeat) {
-		return { error: "Passwords didn't match" };
+		return { error: "Passwords don't match" };
 	}
 
 	try {

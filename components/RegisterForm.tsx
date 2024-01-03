@@ -14,6 +14,7 @@ import Link from "next/link";
 import { useFormState } from "react-dom";
 
 const RegisterForm = () => {
+	const [state, formAction] = useFormState(handleRegister, undefined);
 	return (
 		<Card className="md:w-[400px]">
 			<CardHeader>
@@ -21,7 +22,7 @@ const RegisterForm = () => {
 				<CardDescription>A Fullstack Social Media Appliaction</CardDescription>
 			</CardHeader>
 			<CardContent>
-				<form className="space-y-4" action={handleRegister}>
+				<form className="space-y-4" action={formAction}>
 					<Input type="text" name="username" placeholder="Username" />
 					<Input type="email" name="email" placeholder="Email" />
 					<Input type="password" name="password" placeholder="Password" />
@@ -42,6 +43,7 @@ const RegisterForm = () => {
 					Login here
 				</Link>
 			</CardFooter>
+			<CardFooter className="-mt-2 text-destructive">{state?.error}</CardFooter>
 		</Card>
 	);
 };
