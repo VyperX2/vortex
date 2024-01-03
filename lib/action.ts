@@ -2,13 +2,6 @@ import User from "@/models/User";
 import { signIn } from "./auth";
 import { connectToDB } from "./database";
 const bcrypt = require("bcrypt");
-interface formDataProps {
-	email: string;
-	username: string;
-	img: string;
-	passwordRepeat: string;
-	password: string;
-}
 
 export const handleGoogleLogin = async () => {
 	"use server";

@@ -58,16 +58,18 @@ export const {
 		async signIn({ user, account, profile }) {
 			await connectToDB();
 			try {
-				const user = await User.findOne({ email: profile?.email });
+				if (profile) {
+					const user = await User.findOne({ email: profile.email });
 
-				if (!user) {
-					const newUser = new User({
-						email: profile?.email,
-						username: profile?.name,
-						img: profile?.picture,
-					});
+					if (!user) {
+						const newUser = new User({
+							email: profile.email,
+							username: profile.name,
+							img: profile.picture,
+						});
 
-					await newUser.save();
+						await newUser.save();
+					}
 				}
 				return true;
 			} catch (error) {
