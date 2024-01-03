@@ -1,20 +1,19 @@
+"use server";
 import User from "@/models/User";
 import { signIn } from "./auth";
 import { connectToDB } from "./database";
 const bcrypt = require("bcrypt");
 
 export const handleGoogleLogin = async () => {
-	"use server";
 	await signIn("google");
 };
 
 export const handleRegister = async (formData: any) => {
-	"use server";
 	const { username, password, email, img, passwordRepeat } =
 		Object.fromEntries(formData);
 
 	if (password !== passwordRepeat) {
-		return "Passwords didn't match";
+		return { error: "Passwords didn't match" };
 	}
 
 	try {
@@ -23,24 +22,25 @@ export const handleRegister = async (formData: any) => {
 		const salt = await bcrypt.genSalt(10);
 		const hashedPasword = await bcrypt.hash(password, salt);
 
-		if (!user) {
-			const newUser = new User({
-				username,
-				email,
-				password: hashedPasword,
-				img,
-			});
-
-			await newUser.save();
-			console.log("NEW USER CREATED");
+		if (user) {
+			return { error: "User already exists" };
 		}
+
+		const newUser = new User({
+			username,
+			email,
+			password: hashedPasword,
+			img,
+		});
+
+		await newUser.save();
+		return { success: true };
 	} catch (error) {
 		console.log(error);
 	}
 };
 
 export const handleLogin = async (formData: any) => {
-	"use server";
 	const { username, password } = Object.fromEntries(formData);
 
 	try {
