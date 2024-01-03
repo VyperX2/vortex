@@ -19,7 +19,7 @@ const RegisterForm = () => {
 		<Card className="md:w-[400px]">
 			<CardHeader>
 				<CardTitle>Register To Vortex</CardTitle>
-				<CardDescription>A Fullstack Social Media Appliaction</CardDescription>
+				<CardDescription>A Fullstack Social Media Application</CardDescription>
 			</CardHeader>
 			<CardContent>
 				<form className="space-y-4" action={formAction}>

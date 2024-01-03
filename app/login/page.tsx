@@ -18,7 +18,7 @@ const LoginPage = async () => {
 				<CardHeader>
 					<CardTitle>Login to Vortex</CardTitle>
 					<CardDescription>
-						A Fullstack Social Media Appliaction
+						A Fullstack Social Media Application
 					</CardDescription>
 				</CardHeader>
 				<CardContent className="space-y-4">
