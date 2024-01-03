@@ -1,15 +1,14 @@
+"use server";
 import User from "@/models/User";
 import { signIn } from "./auth";
 import { connectToDB } from "./database";
 const bcrypt = require("bcrypt");
 
 export const handleGoogleLogin = async () => {
-	"use server";
 	await signIn("google");
 };
 
 export const handleRegister = async (formData: any) => {
-	"use server";
 	const { username, password, email, img, passwordRepeat } =
 		Object.fromEntries(formData);
 
@@ -40,7 +39,6 @@ export const handleRegister = async (formData: any) => {
 };
 
 export const handleLogin = async (formData: any) => {
-	"use server";
 	const { username, password } = Object.fromEntries(formData);
 
 	try {
