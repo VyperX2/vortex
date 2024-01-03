@@ -40,7 +40,7 @@ export const handleRegister = async (previousState: any, formData: any) => {
 	}
 };
 
-export const handleLogin = async (formData: any) => {
+export const handleLogin = async (previousState: any, formData: any) => {
 	const { username, password } = Object.fromEntries(formData);
 
 	try {
@@ -50,5 +50,6 @@ export const handleLogin = async (formData: any) => {
 		});
 	} catch (error) {
 		console.log(error);
+		return "Inavlid credentials";
 	}
 };

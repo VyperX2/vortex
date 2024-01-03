@@ -10,9 +10,16 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { handleGoogleLogin, handleLogin } from "@/lib/action";
+import { auth } from "@/lib/auth";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import { useFormState } from "react-dom";
 import { FaGoogle } from "react-icons/fa";
-const LoginForm = () => {
+const LoginForm = async () => {
+	const [state, formAction] = useFormState(handleLogin, undefined);
+	const router = useRouter();
+
 	return (
 		<Card className="md:w-[400px]">
 			<CardHeader>
@@ -20,7 +27,7 @@ const LoginForm = () => {
 				<CardDescription>A Fullstack Social Media Application</CardDescription>
 			</CardHeader>
 			<CardContent className="space-y-4">
-				<form className="space-y-4" action={handleLogin}>
+				<form className="space-y-4" action={formAction}>
 					<Input type="text" name="username" placeholder="Username" />
 					<Input type="password" name="password" placeholder="Password" />
 					<Button className="w-full">Login</Button>
@@ -38,6 +45,7 @@ const LoginForm = () => {
 					Register here
 				</Link>
 			</CardFooter>
+			<CardFooter className="-mt-2 text-destructive">{state}</CardFooter>
 		</Card>
 	);
 };
