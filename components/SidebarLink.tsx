@@ -12,9 +12,9 @@ const SidebarLink: React.FC<SidebarLinkProps> = ({
 
 	return (
 		<a
-			className={`${
-				pathname === href ? "bg-secondary" : ""
-			} ${index === 0 ? "border-t":""} hover:bg-secondary pl-4 py-4 transition-all border-b  border-b-muted`}
+			className={`${pathname === href ? "bg-secondary" : ""} ${
+				index === 0 ? "border-t" : ""
+			} hover:bg-secondary pl-4 py-4 transition-all border-b  border-b-muted`}
 			href={href}
 		>
 			{title}
