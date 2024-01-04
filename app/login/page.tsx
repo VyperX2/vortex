@@ -1,9 +1,7 @@
-import LoginForm from "@/components/LoginForm";
 
-const LoginPage = async () => {
+const LoginPage = () => {
 	return (
 		<section className="w-full h-screen flex items-center justify-center">
-			<LoginForm />
 		</section>
 	);
 };
