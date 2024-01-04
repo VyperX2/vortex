@@ -1,16 +1,17 @@
 import { tabs } from "@/lib/constants";
 import SidebarLink from "./SidebarLink";
+import Link from "next/link";
 
 const Sidebar = () => {
 	return (
-		<nav className="lg:flex flex-col  border-r  py-8 h-screen  hidden gap-8 w-full">
+		<nav className="lg:flex flex-col  border-r  py-8 h-screen  hidden gap-8 w-full ">
 			<div className="flex items-center font-semibold text-lg pl-4">
 				{/* Insert ICON here */}
 				<h4>Vortex</h4>
 			</div>
 
 			{/* USER PROFILE  */}
-			<div className="flex items-center gap-4 pl-4">
+			<Link href={"/profile"} className="flex items-center gap-4 pl-4">
 				<img
 					src="https://picsum.photos/200/300"
 					alt="profile_img"
@@ -21,7 +22,7 @@ const Sidebar = () => {
 					<p className="font-semibold">VyperX</p>
 					<p className="text-muted-foreground">@vyperx</p>
 				</div>
-			</div>
+			</Link>
 
 			<ul className="flex flex-col ">
 				{tabs.map((tab, index) => (
