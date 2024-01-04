@@ -4,8 +4,11 @@ import { IoSearch } from "react-icons/io5";
 
 const Navbar = () => {
 	return (
-		<nav className="lg:ml-[300px] w-[300px] ml-6 md:w-auto py-8 flex sm:items-start">
-			<IoSearch className="absolute mt-3 ml-2 w-5 h-5 mr-2" />
+		<nav className=" w-full  md:w-auto py-8 flex  container">
+			<IoSearch
+				className="absolute mt-3 ml-2 w-5 h-5 mr-2 text-red-800"
+				style={{ color: "whitesmoke", opacity: "0.7" }}
+			/>
 			<Input placeholder="Search for users..." className="pl-8 py-5" />
 		</nav>
 	);
