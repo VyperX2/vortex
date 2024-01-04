@@ -2,11 +2,11 @@ import React from "react";
 import { Input } from "@/components/ui/input";
 
 const Navbar = () => {
-  return (
-    <nav className="relative left-[500px] w-[500px]">
-      <Input />
-    </nav>
-  );
+	return (
+		<nav className="relative ml-72 py-4">
+			<Input placeholder="Search for users..." />
+		</nav>
+	);
 };
 
 export default Navbar;
