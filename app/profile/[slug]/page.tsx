@@ -24,8 +24,6 @@ const ProfilePage = ({ posts, followers, following }: UserFameProps) => {
 					{following} <b>20</b> Following
 				</h1>
 			</div>
-			<hr className="mt-[98px]" />
-			<h1 className="flex justify-center mt-5 font-bold">Your Posts</h1>
 			<div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 2xl:grid-cols-4 place-items-center mt-20 gap-y-12">
 				<Post />
 				<Post />
