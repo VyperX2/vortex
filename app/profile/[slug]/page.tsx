@@ -1,6 +1,7 @@
+import Post from "@/components/Post";
 import { Userfame } from "@/lib/constants";
 import { UserFameProps } from "@/lib/types";
-console.log(Userfame);
+// console.log(Userfame);
 const ProfilePage = ({ posts, followers, following }: UserFameProps) => {
 	return (
 		<>
@@ -26,26 +27,12 @@ const ProfilePage = ({ posts, followers, following }: UserFameProps) => {
 			<hr className="mt-[98px]" />
 			<h1 className="flex justify-center mt-5 font-bold">Your Posts</h1>
 			<div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 2xl:grid-cols-4 place-items-center mt-20 gap-y-12">
-				<div className="flex flex-col gap-3">
-					<img src="https://picsum.photos/200/300" alt="post" />
-					<h6>Title</h6>
-				</div>
-				<div className="flex flex-col gap-3">
-					<img src="https://picsum.photos/200/300" alt="post" />
-					<h6>Title</h6>
-				</div>
-				<div className="flex flex-col gap-3">
-					<img src="https://picsum.photos/200/300" alt="post" />
-					<h6>Title</h6>
-				</div>
-				<div className="flex flex-col gap-3">
-					<img src="https://picsum.photos/200/300" alt="post" />
-					<h6>Title</h6>
-				</div>
-				<div className="flex flex-col gap-3">
-					<img src="https://picsum.photos/200/300" alt="post" />
-					<h6>Title</h6>
-				</div>
+				<Post />
+				<Post />
+				<Post />
+				<Post />
+				<Post />
+				<Post />
 			</div>
 		</>
 	);
