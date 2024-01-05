@@ -19,9 +19,7 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className={`dark ${inter.className} flex bg-background`}>
-				<section className="2xl:flex-[0.2] lg:flex-[0.3]">
-					<Sidebar />
-				</section>
+				<Sidebar />
 				<main className="flex-1">
 					{children}
 					{/* <Footer /> */}
