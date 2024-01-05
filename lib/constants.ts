@@ -5,6 +5,13 @@ const tabs = [
 	{ title: "Saved", href: "/saved", icon: "saved-icon" },
 	{ title: "Create", href: "/create", icon: "create-icon" },
 ];
+const Userfame = [
+	{
+		posts: 5,
+		followers: 10,
+		following: 20,
+	},
+];
 
 const usersArray = [
 	{
@@ -25,4 +32,4 @@ const usersArray = [
 	},
 ];
 
-export { tabs, usersArray };
+export { tabs, Userfame, usersArray };
