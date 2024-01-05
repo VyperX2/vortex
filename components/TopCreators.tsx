@@ -1,7 +1,5 @@
 import { usersArray } from "@/lib/constants";
 import { Card, CardContent, CardHeader } from "./ui/card";
-import Image from "next/image";
-import { Button } from "./ui/button";
 
 const TopCreators = () => {
 	return (
