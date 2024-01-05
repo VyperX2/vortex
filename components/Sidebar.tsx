@@ -3,6 +3,8 @@ import { tabs } from "@/lib/constants.tsx";
 import SidebarLink from "./SidebarLink";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Button } from "./ui/button";
+import { handleLogout } from "@/lib/actions";
 
 const Sidebar = () => {
 	const pathname = usePathname();
@@ -37,6 +39,9 @@ const Sidebar = () => {
 							<SidebarLink {...tab} index={index} key={index} />
 						))}
 					</ul>
+					<form action={handleLogout}>
+						<Button className="w-full ">SignOut</Button>
+					</form>
 				</nav>
 			)}
 		</>
