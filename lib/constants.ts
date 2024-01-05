@@ -6,4 +6,23 @@ const tabs = [
 	{ title: "Create", href: "/create", icon: "create-icon" },
 ];
 
-export { tabs };
+const usersArray = [
+	{
+		name: "John Doe",
+		img: "https://picsum.photos/200/300?id=1",
+	},
+	{
+		name: "Alice Smith",
+		img: "https://picsum.photos/200/300?id=2",
+	},
+	{
+		name: "Bob Johnson",
+		img: "https://picsum.photos/200/300?id=3",
+	},
+	{
+		name: "Eva Williams",
+		img: "https://picsum.photos/200/300?id=4",
+	},
+];
+
+export { tabs, usersArray };
