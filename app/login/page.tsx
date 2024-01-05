@@ -8,6 +8,7 @@ import {
 	CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { handleGoogleLogin } from "@/lib/actions";
 import Link from "next/link";
 import { FaGoogle } from "react-icons/fa";
 const LoginPage = async () => {
@@ -26,7 +27,7 @@ const LoginPage = async () => {
 						<Input type="password" name="password" placeholder="Password" />
 						<Button className="w-full">Login</Button>
 					</form>
-					<form className="w-full grid items-center" action="">
+					<form className="w-full grid items-center" action={handleGoogleLogin}>
 						<Button className="gap-4">
 							Login with Google
 							<FaGoogle />
