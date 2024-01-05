@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const Sidebar = () => {
 	return (
-		<nav className="lg:flex flex-col  border-r  py-8 h-screen  hidden gap-8 w-full ">
+		<nav className="lg:flex flex-col  border-r  py-8 h-full  hidden gap-8 w-full ">
 			<div className="flex items-center font-semibold text-lg pl-4">
 				{/* Insert ICON here */}
 				<h4>Vortex</h4>
