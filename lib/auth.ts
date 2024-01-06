@@ -20,8 +20,6 @@ export const {
 			try {
 				await connectToDB();
 				const user = await User.findOne({ email: profile?.email });
-				console.log(profile?.name);
-				console.log(profile);
 
 				if (!user) {
 					console.log("Creating New User");
