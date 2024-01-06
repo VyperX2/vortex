@@ -12,7 +12,7 @@ const UserDisplay = async () => {
 					className="flex items-center gap-4 pl-4"
 				>
 					<img
-						src="https://picsum.photos/200/300"
+						src={`${session?.user?.image}`}
 						alt="profile_img"
 						className=" h-14 w-14 rounded-full"
 					/>
