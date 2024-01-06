@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "@/styles/globals.css";
 import Sidebar from "@/components/Sidebar";
 import Footer from "@/components/Footer";
+import UserDisplay from "@/components/UserDisplay";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,7 +20,9 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className={`dark ${inter.className} flex bg-background`}>
-				<Sidebar />
+				<Sidebar>
+					<UserDisplay />
+				</Sidebar>
 				<main className="flex-1">
 					{children}
 					{/* <Footer /> */}

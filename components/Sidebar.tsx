@@ -1,13 +1,13 @@
 "use client";
 import { tabs } from "@/lib/constants.tsx";
 import SidebarLink from "./SidebarLink";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "./ui/button";
 import { handleLogout } from "@/lib/actions";
 
-const Sidebar = () => {
+const Sidebar = ({ children }: { children: React.ReactNode }) => {
 	const pathname = usePathname();
+
 	return (
 		<>
 			{pathname === "/login" || pathname === "/register" ? null : (
@@ -18,22 +18,7 @@ const Sidebar = () => {
 					</div>
 
 					{/* USER PROFILE  */}
-					<Link
-						href={"/profile/vyperx2"}
-						className="flex items-center gap-4 pl-4"
-					>
-						<img
-							src="https://picsum.photos/200/300"
-							alt="profile_img"
-							className=" h-14 w-14 rounded-full"
-						/>
-						{/* CHANGE THIS TO NEXT IMAGE LATER */}
-						<div className="flex flex-col">
-							<p className="font-semibold">VyperX</p>
-							<p className="text-muted-foreground">@vyperx</p>
-						</div>
-					</Link>
-
+					{children}
 					<ul className="flex flex-col ">
 						{tabs.map((tab, index) => (
 							<SidebarLink {...tab} index={index} key={index} />
