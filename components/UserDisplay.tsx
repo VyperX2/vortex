@@ -8,7 +8,7 @@ const UserDisplay = async () => {
 		<>
 			{
 				<Link
-					href={"/profile/vyperx2"}
+					href={`/profile/${session?.user?.name}`}
 					className="flex items-center gap-4 pl-4"
 				>
 					<img
