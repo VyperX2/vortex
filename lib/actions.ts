@@ -47,3 +47,18 @@ export const handleRegister = async (formData: FormData) => {
 		console.log("Something went wrong!");
 	}
 };
+
+export const handleLogin = async (formData: FormData) => {
+	const { username, password } = Object.fromEntries(formData);
+
+	try {
+		console.log("Starting");
+		await signIn("credentials", {
+			username,
+			password,
+		});
+	} catch (error) {
+		console.log(error);
+		return { error: "Something went wrong" };
+	}
+};
