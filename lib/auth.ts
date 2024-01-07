@@ -3,6 +3,7 @@ import Google from "next-auth/providers/google";
 import { connectToDB } from "./database";
 import User from "@/models/User";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { authConfig } from "./auth.config";
 const bcrypt = require("bcrypt");
 
 const login = async (credentials: Partial<Record<string, unknown>>) => {
@@ -36,6 +37,7 @@ export const {
 	signIn,
 	signOut,
 } = NextAuth({
+	...authConfig,
 	providers: [
 		Google({
 			clientId: process.env.GOOGLE_ID,
@@ -80,5 +82,6 @@ export const {
 				return false;
 			}
 		},
+		...authConfig.callbacks,
 	},
 });
