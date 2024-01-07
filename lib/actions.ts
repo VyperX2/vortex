@@ -1,5 +1,5 @@
 "use server";
-
+const bcrypt = require("bcrypt");
 import User from "@/models/User";
 import { signIn, signOut } from "./auth";
 import { connectToDB } from "./database";
@@ -30,10 +30,13 @@ export const handleRegister = async (formData: FormData) => {
 			return "User already exists";
 		}
 
+		const salt = await bcrypt.genSalt(10);
+		const hashedPassword = await bcrypt.hash(password, salt);
+
 		const newUser = new User({
 			username,
 			email,
-			password,
+			password: hashedPassword,
 			img,
 		});
 
