@@ -52,7 +52,7 @@ export const handleRegister = async (
 	}
 };
 
-export const handleLogin = async (formData: FormData) => {
+export const handleLogin = async (previousState: any, formData: FormData) => {
 	const { username, password } = Object.fromEntries(formData);
 
 	try {
@@ -60,8 +60,12 @@ export const handleLogin = async (formData: FormData) => {
 			username,
 			password,
 		});
-	} catch (error) {
-		console.log(error);
-		return { error: "Something went wrong" };
+		return { success: true };
+	} catch (error: any) {
+		if (error?.name.includes("CredentialsSignin")) {
+			return { error: "Invalid username or password" };
+		}
+
+		throw error;
 	}
 };

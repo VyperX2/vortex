@@ -7,12 +7,11 @@ const bcrypt = require("bcrypt");
 
 const login = async (credentials: Partial<Record<string, unknown>>) => {
 	try {
-		console.log("START");
 		await connectToDB();
 		const user = await User.findOne({ username: credentials.username });
 
 		if (!user) {
-			throw new Error("User doesnt exist");
+			throw new Error("User Does not exist");
 		}
 
 		const isPasswordCorrect = await bcrypt.compare(
@@ -21,7 +20,7 @@ const login = async (credentials: Partial<Record<string, unknown>>) => {
 		);
 
 		if (!isPasswordCorrect) {
-			throw new Error("Invalid password");
+			throw new Error("Invalid Password");
 		}
 
 		return user;

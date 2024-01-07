@@ -1,3 +1,4 @@
+import LoginForm from "@/components/LoginForm";
 import { Button } from "@/components/ui/button";
 import {
 	Card,
@@ -22,11 +23,7 @@ const LoginPage = async () => {
 					</CardDescription>
 				</CardHeader>
 				<CardContent className="space-y-4">
-					<form className="space-y-4" action={handleLogin}>
-						<Input type="text" name="username" placeholder="Username" />
-						<Input type="password" name="password" placeholder="Password" />
-						<Button className="w-full">Login</Button>
-					</form>
+					<LoginForm />
 					<form className="w-full grid items-center" action={handleGoogleLogin}>
 						<Button className="gap-4">
 							Login with Google
