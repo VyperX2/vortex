@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { handleRegister } from "@/lib/actions";
+import RegisterForm from "@/components/RegisterForm";
 const RegisterPage = () => {
 	return (
 		<section className="w-full h-screen grid place-items-center">
@@ -21,17 +22,7 @@ const RegisterPage = () => {
 					</CardDescription>
 				</CardHeader>
 				<CardContent>
-					<form className="space-y-4" action={handleRegister}>
-						<Input type="text" name="username" placeholder="Username" />
-						<Input type="email" name="email" placeholder="Email" />
-						<Input type="password" name="password" placeholder="Password" />
-						<Input
-							type="password"
-							name="passwordRepeat"
-							placeholder="Confirm Password"
-						/>
-						<Button className="w-full">Register</Button>
-					</form>
+					<RegisterForm />
 				</CardContent>
 				<CardFooter>
 					<Link className="text-sm" href="/login">
