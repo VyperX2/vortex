@@ -2,12 +2,12 @@ import { PhotoProps } from "@/lib/types";
 import Image from "next/image";
 
 const ExplorePage: React.FC = async () => {
-  // NO NEED FOR CLIENT COMPONENTS TO FETCH DATA
-  // PAGES SHOULD BE SERVER COMPONENTS
+	// NO NEED FOR CLIENT COMPONENTS TO FETCH DATA
+	// PAGES SHOULD BE SERVER COMPONENTS
 	const fetchData = async () => {
 		try {
 			const response = await fetch(
-				"https://jsonplaceholder.typicode.com/photos"
+				"https://jsonplaceholder.typicode.com/posts"
 			);
 			const data: PhotoProps[] = await response.json();
 			return data;
