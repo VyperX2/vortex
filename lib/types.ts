@@ -1,21 +1,21 @@
 import { ReactElement } from "react";
 
 export interface SidebarLinkProps {
-	title: string;
-	href: string;
-	icon: ReactElement;
-	index: number;
+  title: string;
+  href: string;
+  icon: ReactElement;
+  index: number;
 }
 export interface UserFameProps {
-	posts: number;
-	followers: number;
-	following: number;
+  posts: number;
+  followers: number;
+  following: number;
 }
 
 export interface PhotoProps {
-	id: number;
-	title: string;
-	url: string;
+  id: number;
+  title: string;
+  url: string;
 }
 // facing this error cant use image from api check next config
 // Unhandled Runtime Error
