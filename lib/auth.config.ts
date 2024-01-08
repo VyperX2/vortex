@@ -4,15 +4,18 @@ export const authConfig = {
 	},
 	providers: [],
 	callbacks: {
-		async jwt({ token, user } : any) {
+		async jwt({ token, user }: any) {
 			if (user) {
+				console.log(user.username);
 				token.id = user.id;
+				token.username = user.username;
 			}
 			return token;
 		},
-		async session({ session, token } : any) {
+		async session({ session, token }: any) {
 			if (token) {
 				session.user.id = token.id;
+				session.user.username = token.username;
 			}
 			return session;
 		},
