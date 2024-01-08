@@ -1,4 +1,5 @@
 import { auth } from "@/lib/auth";
+import Image from "next/image";
 import Link from "next/link";
 
 const UserDisplay = async () => {
@@ -11,9 +12,11 @@ const UserDisplay = async () => {
 					href={`/profile/${session?.user?.name}`}
 					className="flex items-center gap-4 pl-4"
 				>
-					<img
-						src={`${session?.user?.image}`}
+					<Image
+						src={`/${session?.user?.image}`}
 						alt="profile_img"
+            height={56}
+            width={56}
 						className=" h-14 w-14 rounded-full"
 					/>
 					{/* CHANGE THIS TO NEXT IMAGE LATER */}
