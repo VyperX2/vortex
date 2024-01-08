@@ -1,17 +1,9 @@
 import { auth } from "@/lib/auth";
 import Image from "next/image";
 import Link from "next/link";
-import { User } from "next-auth";
-
-declare module "next-auth" {
-	interface User {
-		username: string;
-	}
-}
 
 const UserDisplay = async () => {
 	const session = await auth();
-
 
 	return (
 		<>
