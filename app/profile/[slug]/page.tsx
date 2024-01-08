@@ -2,7 +2,7 @@ import Post from "@/components/Post";
 import { auth } from "@/lib/auth";
 import { UserFameProps } from "@/lib/types";
 import Image from "next/image";
-// console.log(Userfame);
+
 const ProfilePage = async ({ posts, followers, following }: UserFameProps) => {
 	const session = await auth();
 	return (
@@ -15,7 +15,7 @@ const ProfilePage = async ({ posts, followers, following }: UserFameProps) => {
 					width={96}
 					className="h-24 w-24 rounded-full"
 				/>
-				<p className="font-bold ml-5">{session?.user?.name}</p>
+				<p className="font-bold ml-5">{session?.user?.username}</p>
 			</div>
 			<div className="flex justify-center mt-10 mr-[80px] ml-[60px]">
 				<h1 className="mr-5">
