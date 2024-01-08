@@ -8,13 +8,19 @@ const ProfilePage = async ({ posts, followers, following }: UserFameProps) => {
 	return (
 		<>
 			<div className="flex justify-center mt-9 items-center">
-				<Image
-					src={session?.user?.image ?? ""}
-					alt="profile_img"
-					height={96}
-					width={96}
-					className="h-24 w-24 rounded-full"
-				/>
+				{session?.user?.image ? (
+					<Image
+						src={`/${session?.user?.image}`}
+						alt="profile_img"
+						height={56}
+						width={56}
+						className=" h-14 w-14 rounded-full"
+					/>
+				) : (
+					<div className="h-14 w-14 rounded-full bg-secondary flex items-center justify-center font-bold text-2xl">
+						{session?.user?.username[0].toUpperCase()}
+					</div>
+				)}
 				<p className="font-bold ml-5">{session?.user?.username}</p>
 			</div>
 			<div className="flex justify-center mt-10 mr-[80px] ml-[60px]">
