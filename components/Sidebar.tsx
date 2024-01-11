@@ -2,8 +2,6 @@
 import { tabs } from "@/lib/constants.tsx";
 import SidebarLink from "./SidebarLink";
 import { usePathname } from "next/navigation";
-import { Button } from "./ui/button";
-import { handleLogout } from "@/lib/actions";
 
 const Sidebar = ({ children }: { children: React.ReactNode }) => {
 	const pathname = usePathname();
