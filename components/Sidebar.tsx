@@ -24,9 +24,6 @@ const Sidebar = ({ children }: { children: React.ReactNode }) => {
 							<SidebarLink {...tab} index={index} key={index} />
 						))}
 					</ul>
-					<form action={handleLogout}>
-						<Button className="w-full ">SignOut</Button>
-					</form>
 				</nav>
 			)}
 		</>
