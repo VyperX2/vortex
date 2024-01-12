@@ -5,12 +5,10 @@ import {
 	DropdownMenu,
 	DropdownMenuContent,
 	DropdownMenuItem,
-	DropdownMenuLabel,
-	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { handleLogout } from "@/lib/actions";
-import { Button } from "./ui/button";
+
 
 const UserDisplay = async () => {
 	const session = await auth();
