@@ -1,8 +1,7 @@
 "use client";
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { FaImage } from "react-icons/fa6";
-
+import { FaRegImage } from "react-icons/fa6";
 const Create = () => {
 	const [imagePreview, setImagePreview] = useState<string>("");
 
@@ -36,7 +35,7 @@ const Create = () => {
 									className="max-h-[300px] mb-4"
 								/>
 							) : (
-								<FaImage size={60} />
+								<FaRegImage size={60} />
 							)}
 						</label>
 						<input
