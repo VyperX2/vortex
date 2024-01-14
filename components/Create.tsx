@@ -16,6 +16,7 @@ const Create = () => {
 		}
 	};
 
+
 	return (
 		<section className="flex flex-col items-center gap-8">
 			<h4 className="text-primary font-bold text-2xl">Create Post</h4>
