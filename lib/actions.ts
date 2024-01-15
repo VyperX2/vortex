@@ -69,10 +69,3 @@ export const handleLogin = async (previousState: any, formData: FormData) => {
 		throw error;
 	}
 };
-
-export const handlePost = async (formData: FormData) => {
-	let { caption, postImg } = Object.fromEntries(formData);
-
-
-	console.log(caption, postImg);
-};

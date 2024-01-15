@@ -5,6 +5,7 @@ import Sidebar from "@/components/Sidebar";
 import Footer from "@/components/Footer";
 import UserDisplay from "@/components/UserDisplay";
 import Menu from "@/components/Menu";
+import { EdgeStoreProvider } from "@/lib/edgestore";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,14 +23,16 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className={`dark ${inter.className} flex bg-background`}>
-				<Sidebar>
-					<UserDisplay />
-				</Sidebar>
-				<main className="flex-1 py-8">
-					{children}
-					<Menu />
-					{/* <Footer /> */}
-				</main>
+				<EdgeStoreProvider>
+					<Sidebar>
+						<UserDisplay />
+					</Sidebar>
+					<main className="flex-1 py-8">
+						{children}
+						<Menu />
+						{/* <Footer /> */}
+					</main>
+				</EdgeStoreProvider>
 			</body>
 		</html>
 	);
