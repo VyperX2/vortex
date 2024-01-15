@@ -73,8 +73,6 @@ export const handleLogin = async (previousState: any, formData: FormData) => {
 export const handlePost = async (formData: FormData) => {
 	let { caption, postImg } = Object.fromEntries(formData);
 
-	// Convert postImg to URL
-	let imgUrl = URL.createObjectURL(postImg);
 
-	console.log(caption, imgUrl);
+	console.log(caption, postImg);
 };
