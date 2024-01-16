@@ -65,7 +65,7 @@ const Create = ({ session }: { session: Session | null }) => {
 										url: res.url,
 										thumbnailUrl: res.thumbnailUrl,
 									});
-									if (caption) {
+									if (caption && urls) {
 										const response = await fetch("/api/post/new", {
 											method: "POST",
 											body: JSON.stringify({
