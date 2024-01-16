@@ -8,7 +8,10 @@ const TopCreators = () => {
 			<CardContent>
 				<div className="flex flex-col gap-6">
 					{usersArray.map((user) => (
-						<div className="flex items-center gap-2 text-muted-foreground">
+						<div
+							key={user.name}
+							className="flex items-center gap-2 text-muted-foreground"
+						>
 							<img
 								src={user.img}
 								alt={user.name}

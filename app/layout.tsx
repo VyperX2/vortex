@@ -27,7 +27,7 @@ export default function RootLayout({
 					<Sidebar>
 						<UserDisplay />
 					</Sidebar>
-					<main className="flex-1 py-8">
+					<main className="flex-1 pt-4">
 						{children}
 						<Menu />
 						{/* <Footer /> */}

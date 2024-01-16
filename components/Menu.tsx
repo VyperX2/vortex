@@ -8,7 +8,7 @@ const Menu = async () => {
 	return (
 		<Sheet>
 			<SheetTrigger>
-				<IoMdMenu className="absolute mt-3 ml-2 w-10 h-10 left-2 top-5 block lg:hidden text-accent " />
+				<IoMdMenu className="absolute mt-3 ml-2 w-10 h-10 left-2 top-8 block lg:hidden text-accent " />
 			</SheetTrigger>
 			<SheetContent>
 				<div className="mb-2">

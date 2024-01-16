@@ -19,10 +19,46 @@ const Create = ({ session }: { session: Session | null }) => {
 	const { edgestore } = useEdgeStore();
 	const router = useRouter();
 
+	const handlePost = async () => {
+		setIsPosting(true);
+		let uploadedUrls;
+
+		if (file) {
+			const res = await edgestore?.publicImages?.upload({
+				file,
+				onProgressChange: (progress) => {
+					setProgress(progress);
+				},
+			});
+
+			uploadedUrls = {
+				url: res.url,
+				thumbnailUrl: res.thumbnailUrl,
+			};
+			setUrls(uploadedUrls);
+		}
+
+		if (caption && uploadedUrls) {
+			const response = await fetch("/api/post/new", {
+				method: "POST",
+				body: JSON.stringify({
+					img: uploadedUrls.url,
+					caption: caption,
+					userId: session?.user?.id,
+				}),
+			});
+
+			if (response.ok) {
+				router.push("/");
+			}
+		}
+
+		setIsPosting(false);
+	};
 	return (
 		<section className="flex flex-col items-center gap-8">
 			<h4 className="text-primary font-bold text-2xl">Create Post</h4>
-			<Card className="mx-4  w-[65vw] border-dashed ">
+			<Card className="mx-4  md:w-[65vw] w-full border-dashed ">
 				<CardHeader>
 					<CardTitle className="text-xl font-semibold text-center">
 						Insert Your Image
@@ -30,14 +66,26 @@ const Create = ({ session }: { session: Session | null }) => {
 				</CardHeader>
 				<CardContent>
 					<form className="flex flex-col items-center gap-4 ">
-						<SingleImageDropzone
-							width={300}
-							height={400}
-							value={file}
-							onChange={(file) => {
-								setFile(file);
-							}}
-						/>
+						<div className="hidden md:block">
+							<SingleImageDropzone
+								width={300}
+								height={400}
+								value={file}
+								onChange={(file) => {
+									setFile(file);
+								}}
+							/>
+						</div>
+						<div className="block md:hidden">
+							<SingleImageDropzone
+								width={220}
+								height={400}
+								value={file}
+								onChange={(file) => {
+									setFile(file);
+								}}
+							/>
+						</div>
 						<div className="h-[6px] w-44 borer rounded overflow-hidden">
 							<div
 								className=" h-full bg-white transition-all duration-150"
@@ -53,42 +101,7 @@ const Create = ({ session }: { session: Session | null }) => {
 						<Button
 							type="button"
 							className="text-lg font-semibold"
-							onClick={async () => {
-								setIsPosting(true);
-								let uploadedUrls;
-
-								if (file) {
-									const res = await edgestore?.publicImages?.upload({
-										file,
-										onProgressChange: (progress) => {
-											setProgress(progress);
-										},
-									});
-
-									uploadedUrls = {
-										url: res.url,
-										thumbnailUrl: res.thumbnailUrl,
-									};
-									setUrls(uploadedUrls);
-								}
-
-								if (caption && uploadedUrls) {
-									const response = await fetch("/api/post/new", {
-										method: "POST",
-										body: JSON.stringify({
-											img: uploadedUrls.url,
-											caption: caption,
-											userId: session?.user?.id,
-										}),
-									});
-
-									if (response.ok) {
-										router.push("/");
-									}
-								}
-
-								setIsPosting(false);
-							}}
+							onClick={handlePost}
 						>
 							{!isPosting ? "Post" : "Posting..."}
 						</Button>
