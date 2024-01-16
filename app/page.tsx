@@ -3,12 +3,14 @@ import Navbar from "@/components/Navbar";
 
 const HomePage = () => {
 	return (
-		<div className="container flex flex-col">
-			<div className="flex-1 h-fit py-8">
-				<Navbar />
+		<>
+			<div className="container flex flex-col">
+				<div className="flex-1 h-fit py-8">
+					<Navbar />
+				</div>
+				<Feed />
 			</div>
-			<Feed />
-		</div>
+		</>
 	);
 };
 

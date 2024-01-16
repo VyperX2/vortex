@@ -1,10 +1,18 @@
 import { Post } from "@/lib/types";
+import PostCard from "./PostCard";
 
 const Feed = async () => {
-	const res = await fetch("http://localhost:3000/api/post");
+	const res = await fetch("http://localhost:3000/api/post", {
+		cache: "no-store",
+	});
 	const data: Post[] = await res.json();
-	console.log(data, "THIS IS DATA");
-	return <div className="container"></div>;
+	return (
+		<div className="container border">
+			{data.map((post) => (
+				<PostCard {...post} />
+			))}
+		</div>
+	);
 };
 
 export default Feed;
