@@ -23,3 +23,23 @@ declare module "next-auth" {
 		username: string;
 	}
 }
+
+export interface User {
+	_id: string;
+	username: string;
+	password: string;
+	email: string;
+	createdAt: string;
+	updatedAt: string;
+	__v: number;
+}
+
+export interface Post {
+	_id: string;
+	creator: User;
+	caption: string;
+	img: string;
+	createdAt: string;
+	updatedAt: string;
+	__v: number;
+}
