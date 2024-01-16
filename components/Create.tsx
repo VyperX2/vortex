@@ -8,6 +8,7 @@ import { SingleImageDropzone } from "./single-image-dropzone";
 import { useRouter } from "next/navigation";
 import { Session } from "next-auth";
 const Create = ({ session }: { session: Session | null }) => {
+	const [isPosting, setIsPosting] = useState<boolean>(false);
 	const [urls, setUrls] = useState<{
 		url: string;
 		thumbnailUrl: string | null;
@@ -53,6 +54,9 @@ const Create = ({ session }: { session: Session | null }) => {
 							type="button"
 							className="text-lg font-semibold"
 							onClick={async () => {
+								setIsPosting(true);
+								let uploadedUrls;
+
 								if (file) {
 									const res = await edgestore?.publicImages?.upload({
 										file,
@@ -61,28 +65,32 @@ const Create = ({ session }: { session: Session | null }) => {
 										},
 									});
 
-									setUrls({
+									uploadedUrls = {
 										url: res.url,
 										thumbnailUrl: res.thumbnailUrl,
-									});
-									if (caption && urls) {
-										const response = await fetch("/api/post/new", {
-											method: "POST",
-											body: JSON.stringify({
-												img: urls?.url,
-												caption: caption,
-												userId: session?.user?.id,
-											}),
-										});
+									};
+									setUrls(uploadedUrls);
+								}
 
-										if (response.ok) {
-											router.push("/");
-										}
+								if (caption && uploadedUrls) {
+									const response = await fetch("/api/post/new", {
+										method: "POST",
+										body: JSON.stringify({
+											img: uploadedUrls.url,
+											caption: caption,
+											userId: session?.user?.id,
+										}),
+									});
+
+									if (response.ok) {
+										router.push("/");
 									}
 								}
+
+								setIsPosting(false);
 							}}
 						>
-							Post
+							{!isPosting ? "Post" : "Posting..."}
 						</Button>
 					</form>
 				</CardContent>
