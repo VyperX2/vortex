@@ -7,7 +7,7 @@ const Feed = async () => {
 	});
 	const data: Post[] = await res.json();
 	return (
-		<div className="container border">
+		<div className="container border grid grid-cols-1 place-items-center ">
 			{data.map((post) => (
 				<PostCard {...post} />
 			))}
