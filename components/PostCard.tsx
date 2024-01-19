@@ -13,8 +13,8 @@ const Post = ({ creator, img, caption, _id }: Post) => {
 					height={800}
 					width={800}
 					alt="post"
-				/> 
-			</button> 
+				/>
+			</button>
 			<div className="flex items-center text-muted-foreground">
 				<Image
 					src="https://picsum.photos/200/200"

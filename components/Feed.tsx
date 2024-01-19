@@ -6,11 +6,14 @@ const Feed = async () => {
 		cache: "no-store",
 	});
 	const data: Post[] = await res.json();
+
 	return (
-		<div className="container border grid grid-cols-1 place-items-center ">
-			{data.map((post) => (
-				<PostCard {...post} />
-			))}
+		<div className="container  grid grid-cols-1 place-items-center ">
+			{Array.isArray(data) && data.length > 0 ? (
+				data.map((post) => <PostCard {...post} />)
+			) : (
+				<p>No posts available</p>
+			)}
 		</div>
 	);
 };
