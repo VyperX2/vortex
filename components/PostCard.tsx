@@ -3,7 +3,7 @@ import { type Post } from "@/lib/types";
 import Image from "next/image";
 import Link from "next/link";
 
-const Post = ({ creator, img, caption, _id }: Post) => {
+const PostCard = ({ creator, img, caption, _id }: Post) => {
 	return (
 		<Link key={_id} className="w-fit flex-col" href={`/post/${_id}`}>
 			<button className="border-none">
@@ -30,4 +30,4 @@ const Post = ({ creator, img, caption, _id }: Post) => {
 	);
 };
 
-export default Post;
+export default PostCard;
