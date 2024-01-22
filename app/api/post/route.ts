@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 export const GET = async (request: Request) => {
 	try {
 		await connectToDB();
-		const posts = await Post.find().populate("creator");
+		const posts = await Post.find().populate("creator").sort({ createdAt: -1 });
 
 		if (posts.length > 0) {
 			return NextResponse.json(posts, { status: 200 });

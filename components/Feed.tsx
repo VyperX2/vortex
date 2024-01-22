@@ -10,7 +10,7 @@ const Feed = async () => {
 	isLoading = false;
 
 	return (
-		<div className="container  grid grid-cols-1 place-items-center ">
+		<div className="container  grid grid-cols-1 place-items-center gap-8">
 			{!isLoading ? (
 				data.map((post) => <PostCard {...post} />)
 			) : (
