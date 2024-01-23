@@ -20,6 +20,7 @@ const userSchema = new Schema(
 		},
 		img: {
 			type: String,
+			default: "",
 		},
 	},
 	{ timestamps: true }

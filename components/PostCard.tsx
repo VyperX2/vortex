@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 const PostCard = ({ creator, img, caption, _id }: Post) => {
+	console.log(creator);
 	return (
 		<Link
 			key={_id}
