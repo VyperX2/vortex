@@ -45,13 +45,13 @@ const UserDisplay = async () => {
 								session?.user?.username || session?.user?.name
 							}`}
 						>
-							<DropdownMenuItem className="text-md">
+							<DropdownMenuItem className="text-md w-full flex items-center justify-center">
 								My Profile
 							</DropdownMenuItem>
 						</Link>
-						<DropdownMenuItem className="text-md">
-							<form action={handleLogout}>
-								<button type="submit" className=" text-destructive">
+						<DropdownMenuItem className="text-md w-full">
+							<form className="w-full" action={handleLogout}>
+								<button type="submit" className=" text-destructive w-full">
 									Sign Out
 								</button>
 							</form>
