@@ -9,7 +9,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { handleLogout } from "@/lib/actions";
 
-
 const UserDisplay = async () => {
 	const session = await auth();
 
@@ -20,7 +19,7 @@ const UserDisplay = async () => {
 					<DropdownMenuTrigger className="flex items-center gap-4 pl-4 outline-none">
 						{session?.user?.image ? (
 							<Image
-								src={`/${session?.user?.image}`}
+								src={session?.user?.image}
 								alt="profile_img"
 								height={56}
 								width={56}
@@ -31,21 +30,24 @@ const UserDisplay = async () => {
 								{session?.user?.username[0].toUpperCase()}
 							</div>
 						)}
-						{/* CHANGE THIS TO NEXT IMAGE LATER */}
 						<div className="flex flex-col">
-							<p className="font-semibold">{session?.user?.username}</p>
+							<p className="font-semibold">{session?.user?.name}</p>
 							<p className="text-muted-foreground">
 								@{session?.user?.email?.split("@")[0]}
 							</p>
 						</div>
 					</DropdownMenuTrigger>
-					<DropdownMenuContent >
+					<DropdownMenuContent>
 						<Link href={`/profile/${session?.user?.username}`}>
-							<DropdownMenuItem className="text-md">My Profile</DropdownMenuItem>
+							<DropdownMenuItem className="text-md">
+								My Profile
+							</DropdownMenuItem>
 						</Link>
 						<DropdownMenuItem className="text-md">
 							<form action={handleLogout}>
-								<button type="submit" className=" text-destructive">Sign Out</button>
+								<button type="submit" className=" text-destructive">
+									Sign Out
+								</button>
 							</form>
 						</DropdownMenuItem>
 					</DropdownMenuContent>
