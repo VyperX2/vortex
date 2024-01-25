@@ -31,14 +31,20 @@ const UserDisplay = async () => {
 							</div>
 						)}
 						<div className="flex flex-col">
-							<p className="font-semibold">{session?.user?.name}</p>
+							<p className="font-semibold">
+								{session?.user?.name || session?.user?.username}
+							</p>
 							<p className="text-muted-foreground">
 								@{session?.user?.email?.split("@")[0]}
 							</p>
 						</div>
 					</DropdownMenuTrigger>
 					<DropdownMenuContent>
-						<Link href={`/profile/${session?.user?.username}`}>
+						<Link
+							href={`/profile/${
+								session?.user?.username || session?.user?.name
+							}`}
+						>
 							<DropdownMenuItem className="text-md">
 								My Profile
 							</DropdownMenuItem>
