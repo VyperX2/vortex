@@ -65,7 +65,6 @@ export const {
 
 					if (!IsUser) {
 						console.log("Creating New User");
-						console.log(user.id);
 
 						const newUser = new User({
 							username: profile?.name,
@@ -73,7 +72,6 @@ export const {
 							img: profile?.picture,
 							provider: user.id,
 						});
-						console.log(user.id);
 
 						await newUser.save();
 						console.log("User Created");

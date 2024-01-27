@@ -4,7 +4,6 @@ import { connectToDB } from "./database";
 const fetchMongoUserByGoogleId = async (identifier: string) => {
 	try {
 		await connectToDB();
-		console.log(identifier);
 		const user = await User.findOne({ provider: identifier });
 
 		if (!user) {
@@ -28,19 +27,14 @@ export const authConfig = {
 	callbacks: {
 		async jwt({ token, user }: any) {
 			if (user) {
-				console.log(user);
-
-				console.log("THIS IS RUNING");
 				// If the user logs in with Google, fetch MongoDB user information
 				const mongoUser = await fetchMongoUserByGoogleId(user.id);
 
 				if (mongoUser) {
-					console.log(mongoUser._id);
 					// Use the MongoDB _id
 					token.id = mongoUser._id;
 					token.username = mongoUser.username;
 				} else {
-					console.log("THIS IS RUN");
 					// For other providers, use the existing user.id
 					token.id = user.id;
 					token.username = user.username;
@@ -50,7 +44,6 @@ export const authConfig = {
 		},
 		async session({ session, token }: any) {
 			if (token) {
-				console.log(token);
 				session.user.id = token.id;
 				session.user.username = token.username;
 			}
