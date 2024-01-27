@@ -58,20 +58,25 @@ export const {
 		async signIn({ user, account, profile }) {
 			try {
 				await connectToDB();
+				// console.log({ user, account, profile });
 
 				if (account?.provider === "google") {
-					const user = await User.findOne({ email: profile?.email });
+					const IsUser = await User.findOne({ email: profile?.email });
 
-					if (!user) {
+					if (!IsUser) {
 						console.log("Creating New User");
+						console.log(user.id);
 
 						const newUser = new User({
 							username: profile?.name,
 							email: profile?.email,
-							img: profile?.image,
+							img: profile?.picture,
+							provider: user.id,
 						});
+						console.log(user.id);
 
 						await newUser.save();
+						console.log("User Created");
 					}
 
 					console.log("User Exists");

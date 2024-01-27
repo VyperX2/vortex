@@ -8,7 +8,6 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
 import { handleGoogleLogin, handleLogin } from "@/lib/actions";
 import Link from "next/link";
 import { FaGoogle } from "react-icons/fa";
