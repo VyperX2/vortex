@@ -21,13 +21,19 @@ const PostCard = ({ creator, img, caption, _id }: Post) => {
 				/>
 			</button>
 			<div className="flex items-center gap-3 text-muted-foreground mt-4 mb-4">
-				<Image
-					src="https://picsum.photos/200/200"
-					className="rounded-full"
-					height={32}
-					width={32}
-					alt="post"
-				/>
+				{creator?.img ? (
+					<Image
+						src={creator?.img}
+						className="rounded-full"
+						height={32}
+						width={32}
+						alt="post"
+					/>
+				) : (
+					<div className=" h-8 w-8 bg-secondary flex items-center justify-center rounded-full">
+						{creator.username[0].toUpperCase()}
+					</div>
+				)}
 				<p>{creator?.username}</p>
 			</div>
 			<p>{caption}</p>

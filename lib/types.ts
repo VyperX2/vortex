@@ -31,6 +31,7 @@ export interface User {
 	email: string;
 	createdAt: string;
 	updatedAt: string;
+	img: string;
 	__v: number;
 }
 
