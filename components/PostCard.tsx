@@ -9,7 +9,7 @@ const PostCard = ({ creator, img, caption, _id }: Post) => {
 	return (
 		<div
 			key={_id}
-			className="lg:w-fit flex flex-col bg-secondary/30 lg:container  px-4 w-[90vw] lg:items-start items-start md:items-center   py-8 rounded-lg "
+			className="lg:w-fit flex flex-col bg-secondary/30 lg:container  px-4 w-[90vw] lg:items-start items-start md:items-center py-8 rounded-lg "
 			onClick={() => router.push(`/post/${_id}`)}
 		>
 			<button className="border-none">
