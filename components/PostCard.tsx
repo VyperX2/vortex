@@ -1,15 +1,16 @@
 "use client";
+import { FaRegHeart, FaRegComment } from "react-icons/fa";
 import { type Post } from "@/lib/types";
 import Image from "next/image";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const PostCard = ({ creator, img, caption, _id }: Post) => {
-	console.log(creator);
+	const router = useRouter();
 	return (
-		<Link
+		<div
 			key={_id}
 			className="lg:w-fit flex flex-col bg-secondary/30 lg:container  px-4 w-[90vw] lg:items-start items-start md:items-center   py-8 rounded-lg "
-			href={`/post/${_id}`}
+			onClick={() => router.push(`/post/${_id}`)}
 		>
 			<button className="border-none">
 				<Image
@@ -20,6 +21,14 @@ const PostCard = ({ creator, img, caption, _id }: Post) => {
 					alt="post"
 				/>
 			</button>
+			<div className="flex items-center justify-center gap-8 mt-4">
+				<button onClick={(e) => e.stopPropagation()}>
+					<FaRegHeart />
+				</button>
+				<button onClick={(e) => e.stopPropagation()}>
+					<FaRegComment />
+				</button>
+			</div>
 			<div className="flex items-center gap-3 text-muted-foreground mt-4 mb-4">
 				{creator?.img ? (
 					<Image
@@ -37,7 +46,7 @@ const PostCard = ({ creator, img, caption, _id }: Post) => {
 				<p>{creator?.username}</p>
 			</div>
 			<p>{caption}</p>
-		</Link>
+		</div>
 	);
 };
 
