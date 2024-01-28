@@ -2,8 +2,7 @@ import Post from "@/models/Post";
 import { connectToDB } from "@/lib/database";
 
 export const POST = async (request: Request) => {
-	const { userId, img, caption} = await request.json();
-	
+	const { userId, img, caption } = await request.json();
 
 	try {
 		await connectToDB();
@@ -11,7 +10,6 @@ export const POST = async (request: Request) => {
 			creator: userId,
 			img,
 			caption,
-
 		});
 		await newPost.save();
 		return new Response(JSON.stringify(newPost), { status: 201 });
