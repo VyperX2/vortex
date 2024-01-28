@@ -17,10 +17,10 @@ const PostCard = ({ creator, img, caption, _id }: Post) => {
 				alt="post"
 			/>
 			<div className="flex items-center justify-center gap-8 mt-4">
-				<button onClick={(e) => e.stopPropagation()}>
+				<button>
 					<FaRegHeart />
 				</button>
-				<button onClick={(e) => e.stopPropagation()}>
+				<button>
 					<FaRegComment />
 				</button>
 			</div>
