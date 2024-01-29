@@ -43,4 +43,5 @@ export interface Post {
 	createdAt: string;
 	updatedAt: string;
 	__v: number;
+	likes: number;
 }

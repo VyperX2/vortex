@@ -10,9 +10,9 @@ const Feed = async () => {
 	isLoading = false;
 
 	return (
-		<div className="container  grid grid-cols-1 place-items-center gap-8">
-			{!isLoading ? (
-				data.map((post) => <PostCard {...post} />)
+		<div className="container grid grid-cols-1 place-items-center gap-8">
+			{Array.isArray(data) && data.length > 0 ? (
+				data.map((post) => <PostCard key={post._id} {...post} />)
 			) : (
 				<p>No posts available</p>
 			)}

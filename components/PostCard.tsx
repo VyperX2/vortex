@@ -1,9 +1,12 @@
 "use client";
-import { FaRegHeart, FaRegComment } from "react-icons/fa";
+import { FaRegHeart, FaRegComment, FaHeart } from "react-icons/fa";
 import { type Post } from "@/lib/types";
 import Image from "next/image";
+import { useState } from "react";
 
-const PostCard = ({ creator, img, caption, _id }: Post) => {
+const PostCard = ({ creator, img, caption, _id, likes }: Post) => {
+	const [clientLikes, setClientLikes] = useState<number>(0);
+	const [isLiked, setIsLiked] = useState<boolean>(false);
 	return (
 		<div
 			key={_id}
@@ -17,8 +20,20 @@ const PostCard = ({ creator, img, caption, _id }: Post) => {
 				alt="post"
 			/>
 			<div className="flex items-center justify-center gap-8 mt-4">
-				<button>
-					<FaRegHeart />
+				<button
+					onClick={() => {
+						setIsLiked((prev) => !prev);
+						if (!isLiked) {
+							setClientLikes((prev) => prev + 1);
+						} else {
+							setClientLikes((prev) => prev - 1);
+						}
+					}}
+					className="flex flex-col items-center outline-none"
+				>
+					{!isLiked ? <FaRegHeart /> : <FaHeart />}
+
+					{clientLikes}
 				</button>
 				<button>
 					<FaRegComment />
