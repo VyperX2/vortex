@@ -2,11 +2,27 @@
 import { FaRegHeart, FaRegComment, FaHeart } from "react-icons/fa";
 import { type Post } from "@/lib/types";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect, cache } from "react";
 
 const PostCard = ({ creator, img, caption, _id, likes }: Post) => {
 	const [clientLikes, setClientLikes] = useState<number>(0);
 	const [isLiked, setIsLiked] = useState<boolean>(false);
+
+	useEffect(() => {
+		async function updateLikes(likes: number) {
+			try {
+				const response = await fetch(`/api/post/${_id}`, {
+					method: "PATCH",
+					body: JSON.stringify({
+						likes: clientLikes,
+					}),
+				});
+			} catch (error) {
+				console.log(error);
+			}
+		}
+		updateLikes(clientLikes);
+	}, [clientLikes]);
 	return (
 		<div
 			key={_id}
@@ -31,9 +47,13 @@ const PostCard = ({ creator, img, caption, _id, likes }: Post) => {
 					}}
 					className="flex flex-col items-center outline-none"
 				>
-					{!isLiked ? <FaRegHeart /> : <FaHeart />}
+					{!isLiked ? (
+						<FaRegHeart />
+					) : (
+						<FaHeart style={{ color: "red", opacity: "0.8" }} />
+					)}
 
-					{clientLikes}
+					{likes}
 				</button>
 				<button>
 					<FaRegComment />
