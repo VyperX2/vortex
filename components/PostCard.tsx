@@ -37,7 +37,7 @@ const PostCard = ({ creator, img, caption, _id, likes }: Post) => {
 	return (
 		<div
 			key={_id}
-			className="lg:w-fit flex flex-col bg-secondary/30 lg:container  px-4 w-[90vw] lg:items-start items-start md:items-center py-8 rounded-lg "
+			className="lg:w-fit flex flex-col bg-secondary/30 lg:container  px-4 w-[90vw] lg:items-start items-start md:items-center py-8 rounded-lg border border-secondary/30"
 		>
 			<div className="flex items-center gap-3 text-muted-foreground mt-4 mb-4">
 				{creator?.img ? (
