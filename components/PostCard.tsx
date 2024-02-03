@@ -14,8 +14,8 @@ const PostCard = ({
 	session,
 }: Post & { session: Session | null }) => {
 	const [clientLikes, setClientLikes] = useState<number>(0);
-	const [isLiked, setIsLiked] = useState<boolean>(false);
-
+	const [likeData, setLikeData] = useState<string[]>();
+	const isLiked = likeData?.includes(session?.user?.id || "");
 	useEffect(() => {
 		async function updateLikes() {
 			try {
@@ -25,6 +25,8 @@ const PostCard = ({
 						userId: session?.user?.id,
 					}),
 				});
+				const data = await response.json();
+				setLikeData(data.likes);
 			} catch (error) {
 				console.log(error);
 			}
@@ -66,14 +68,7 @@ const PostCard = ({
 			/>
 			<div className="flex items-center justify-center gap-8 mt-4">
 				<button
-					onClick={() => {
-						setIsLiked((prev) => !prev);
-						if (!isLiked) {
-							setClientLikes((prev) => prev + 1);
-						} else {
-							setClientLikes((prev) => prev - 1);
-						}
-					}}
+					onClick={() => {}}
 					className="flex flex-col items-center outline-none"
 				>
 					{!isLiked ? (
@@ -81,6 +76,8 @@ const PostCard = ({
 					) : (
 						<FaHeart style={{ color: "red", opacity: "0.8" }} />
 					)}
+					{clientLikes}
+					{likeData?.length}
 				</button>
 				<button>
 					<FaRegComment />

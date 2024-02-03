@@ -8,7 +8,6 @@ import { SingleImageDropzone } from "./single-image-dropzone";
 import { useRouter } from "next/navigation";
 import { Session } from "next-auth";
 const Create = ({ session }: { session: Session | null }) => {
-	console.log(session);
 	const [isPosting, setIsPosting] = useState<boolean>(false);
 	const [urls, setUrls] = useState<{
 		url: string;
