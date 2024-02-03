@@ -2,37 +2,35 @@
 import { FaRegHeart, FaRegComment, FaHeart } from "react-icons/fa";
 import { type Post } from "@/lib/types";
 import Image from "next/image";
-import { useState, useEffect, cache } from "react";
+import { useState, useEffect } from "react";
+import { Session } from "next-auth";
 
-const PostCard = ({ creator, img, caption, _id, likes }: Post) => {
+const PostCard = ({
+	creator,
+	img,
+	caption,
+	_id,
+	likes,
+	session,
+}: Post & { session: Session | null }) => {
 	const [clientLikes, setClientLikes] = useState<number>(0);
 	const [isLiked, setIsLiked] = useState<boolean>(false);
 
 	useEffect(() => {
-		async function updateLikes(likes: number) {
+		async function updateLikes() {
 			try {
 				const response = await fetch(`/api/post/${_id}`, {
 					method: "PATCH",
 					body: JSON.stringify({
-						likes: likes,
+						userId: session?.user?.id,
 					}),
 				});
 			} catch (error) {
 				console.log(error);
 			}
 		}
-		async function fetchLatestLikes() {
-			try {
-				const response = await fetch(`/api/post/${_id}`);
-				const data = await response.json();
-				setClientLikes(data.likes);
-			} catch (error) {
-				console.log(error);
-			}
-		}
 
-		fetchLatestLikes();
-		updateLikes(clientLikes);
+		updateLikes();
 	}, [clientLikes]);
 	return (
 		<div
@@ -83,8 +81,6 @@ const PostCard = ({ creator, img, caption, _id, likes }: Post) => {
 					) : (
 						<FaHeart style={{ color: "red", opacity: "0.8" }} />
 					)}
-
-					{likes}
 				</button>
 				<button>
 					<FaRegComment />
