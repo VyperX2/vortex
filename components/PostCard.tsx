@@ -4,6 +4,7 @@ import { type Post } from "@/lib/types";
 import Image from "next/image";
 import { useState } from "react";
 import { Session } from "next-auth";
+import { Button } from "./ui/button";
 
 const PostCard = ({
 	creator,
@@ -12,9 +13,18 @@ const PostCard = ({
 	_id,
 	likes,
 	session,
+	createdAt,
 }: Post & { session: Session | null }) => {
 	const [likeData, setLikeData] = useState<string[]>(likes);
 	const isLiked = likeData?.includes(session?.user?.id || "");
+	const timestamp = createdAt;
+	const dateObject = new Date(timestamp);
+	const day = dateObject.getDate();
+	const month = dateObject.getMonth() + 1; // Month is zero-based, so add 1
+	const year = dateObject.getFullYear();
+
+	const formattedDate = `${day}-${month}-${year}`;
+
 	async function updateLikes(isAdding: boolean) {
 		try {
 			const response = await fetch(`/api/post/${_id}`, {
@@ -36,23 +46,29 @@ const PostCard = ({
 			key={_id}
 			className="lg:w-fit flex flex-col bg-secondary/30 lg:container  px-4 w-[90vw] lg:items-start items-start md:items-center py-8 rounded-lg border border-secondary/30"
 		>
-			<div className="flex items-center gap-3 text-muted-foreground mt-4 mb-4">
-				{creator?.img ? (
-					<Image
-						src={creator?.img}
-						className="rounded-full"
-						height={32}
-						width={32}
-						alt="post"
-					/>
-				) : (
-					<div className=" h-8 w-8 bg-secondary flex items-center justify-center rounded-full">
-						{creator.username[0].toUpperCase()}
-					</div>
-				)}
-				<p className="text-foreground text-lg font-semibold">
-					{creator?.username}
-				</p>
+			<div className="flex items-center justify-between w-full  text-muted-foreground mt-4 mb-4">
+				<div className="flex items-center gap-3">
+					{creator?.img ? (
+						<Image
+							src={creator?.img}
+							className="rounded-full"
+							height={32}
+							width={32}
+							alt="post"
+						/>
+					) : (
+						<div className=" h-8 w-8 bg-secondary flex items-center justify-center rounded-full">
+							{creator.username[0].toUpperCase()}
+						</div>
+					)}
+					<p className="text-foreground text-lg font-semibold">
+						{creator?.username}
+					</p>
+					<Button variant="outline" className="h-8">
+						Follow
+					</Button>
+				</div>
+				<p>{formattedDate}</p>
 			</div>
 			<p className=" mb-4 text-muted-foreground">{caption}</p>
 
