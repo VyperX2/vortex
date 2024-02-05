@@ -7,11 +7,9 @@ import { User as UserType } from "@/lib/types";
 export const PATCH = async (request: Request, { params }: Params) => {
 	try {
 		const { userId, adding } = await request.json();
-		console.log(params.id);
 
 		await connectToDB();
 
-		const user: UserType | null = await User.findOne({ _id: userId });
 		const post = await Post.findOne({ _id: params.id });
 		// Validate input
 		if (adding) {
