@@ -2,7 +2,7 @@
 import { FaRegHeart, FaRegComment, FaHeart } from "react-icons/fa";
 import { type Post } from "@/lib/types";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Session } from "next-auth";
 
 const PostCard = ({
@@ -13,27 +13,23 @@ const PostCard = ({
 	likes,
 	session,
 }: Post & { session: Session | null }) => {
-	const [clientLikes, setClientLikes] = useState<number>(0);
-	const [likeData, setLikeData] = useState<string[]>();
+	const [likeData, setLikeData] = useState<string[]>(likes);
 	const isLiked = likeData?.includes(session?.user?.id || "");
-	useEffect(() => {
-		async function updateLikes() {
-			try {
-				const response = await fetch(`/api/post/${_id}`, {
-					method: "PATCH",
-					body: JSON.stringify({
-						userId: session?.user?.id,
-					}),
-				});
-				const data = await response.json();
-				setLikeData(data.likes);
-			} catch (error) {
-				console.log(error);
-			}
+	async function updateLikes() {
+		try {
+			const response = await fetch(`/api/post/${_id}`, {
+				method: "PATCH",
+				body: JSON.stringify({
+					userId: session?.user?.id,
+				}),
+			});
+			const data = await response.json();
+			setLikeData(data.likes);
+		} catch (error) {
+			console.log(error);
 		}
+	}
 
-		updateLikes();
-	}, [clientLikes]);
 	return (
 		<div
 			key={_id}
@@ -68,7 +64,7 @@ const PostCard = ({
 			/>
 			<div className="flex items-center justify-center gap-8 mt-4">
 				<button
-					onClick={() => {}}
+					onClick={updateLikes}
 					className="flex flex-col items-center outline-none"
 				>
 					{!isLiked ? (
@@ -76,7 +72,6 @@ const PostCard = ({
 					) : (
 						<FaHeart style={{ color: "red", opacity: "0.8" }} />
 					)}
-					{clientLikes}
 					{likeData?.length}
 				</button>
 				<button>
