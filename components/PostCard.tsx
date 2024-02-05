@@ -15,12 +15,13 @@ const PostCard = ({
 }: Post & { session: Session | null }) => {
 	const [likeData, setLikeData] = useState<string[]>(likes);
 	const isLiked = likeData?.includes(session?.user?.id || "");
-	async function updateLikes() {
+	async function updateLikes(isAdding: boolean) {
 		try {
 			const response = await fetch(`/api/post/${_id}`, {
 				method: "PATCH",
 				body: JSON.stringify({
 					userId: session?.user?.id,
+					adding: isAdding,
 				}),
 			});
 			const data = await response.json();
@@ -64,7 +65,7 @@ const PostCard = ({
 			/>
 			<div className="flex items-center justify-center gap-8 mt-4">
 				<button
-					onClick={updateLikes}
+					onClick={() => (!isLiked ? updateLikes(true) : updateLikes(false))}
 					className="flex flex-col items-center outline-none"
 				>
 					{!isLiked ? (
