@@ -41,6 +41,7 @@ export const handleRegister = async (
 			email,
 			password: hashedPassword,
 			img,
+			followers: [],
 		});
 
 		await newUser.save();

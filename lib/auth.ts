@@ -71,6 +71,7 @@ export const {
 							email: profile?.email,
 							img: profile?.picture,
 							provider: user.id,
+							followers: [],
 						});
 
 						await newUser.save();

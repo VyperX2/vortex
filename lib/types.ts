@@ -33,6 +33,7 @@ export interface User {
 	updatedAt: string;
 	img: string;
 	__v: number;
+	followers: string[];
 }
 
 export interface Post {

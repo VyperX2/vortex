@@ -24,7 +24,11 @@ const userSchema = new Schema(
 		},
 		provider: {
 			type: String,
-			default: "PLEASE WORK",
+			default: "",
+		},
+		followers: {
+			type: [{ type: Schema.Types.ObjectId, ref: "User" }],
+			default: [],
 		},
 	},
 	{ timestamps: true }
