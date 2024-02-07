@@ -61,7 +61,7 @@ const PostCard = ({
 	return (
 		<div
 			key={_id}
-			className="lg:w-fit flex flex-col bg-secondary/20 lg:container  px-4 w-[90vw] lg:items-start items-start md:items-center py-8 rounded-lg border border-secondary/30"
+			className="lg:w-fit flex flex-col bg-secondary/20 lg:container  px-4 w-[90vw] lg:items-start items-start md:items-center py-8 rounded-lg border border-secondary/30 overflow-hidden"
 		>
 			<div className="flex items-center justify-between w-full  text-muted-foreground mt-4 mb-4">
 				<div className="flex items-center gap-3">
@@ -93,7 +93,7 @@ const PostCard = ({
 				</div>
 				<p>{formattedDate}</p>
 			</div>
-			<p className=" mb-4 text-muted-foreground">{caption}</p>
+			<p className=" mb-4 text-muted-foreground ">{caption}</p>
 
 			<Image
 				src={img}

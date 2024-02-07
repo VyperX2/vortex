@@ -1,5 +1,4 @@
 import { connectToDB } from "@/lib/database";
-import { User as UserType } from "@/lib/types";
 import User from "@/models/User";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 
@@ -8,7 +7,6 @@ export const PATCH = async (request: Request, { params }: Params) => {
 	const creator = await User.findOne({ _id: params.id });
 	const sameCreator = params.id === userId;
 	await connectToDB();
-	console.log(sameCreator);
 	try {
 		if (following) {
 			if (!creator) {
