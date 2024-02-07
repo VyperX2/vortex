@@ -16,7 +16,9 @@ const PostCard = ({
 	createdAt,
 }: Post & { session: Session | null }) => {
 	const [likeData, setLikeData] = useState<string[]>(likes);
-	const [followerData, setFollowerData] = useState<string[]>(creator.followers);
+	const [followerData, setFollowerData] = useState<string[]>(
+		creator?.followers
+	);
 	const isLiked = likeData?.includes(session?.user?.id || "");
 	const isFollowed = followerData?.includes(session?.user?.id || "");
 	const timestamp = createdAt;
@@ -75,7 +77,7 @@ const PostCard = ({
 						/>
 					) : (
 						<div className=" h-8 w-8 bg-secondary flex items-center justify-center rounded-full">
-							{creator.username[0].toUpperCase()}
+							{creator?.username[0].toUpperCase()}
 						</div>
 					)}
 					<p className="text-foreground text-lg font-semibold">
@@ -88,7 +90,7 @@ const PostCard = ({
 						variant="outline"
 						className="h-8"
 					>
-						{isFollowed ? "Unfollow" : "Follow"} {followerData.length}
+						{isFollowed ? "Unfollow" : "Follow"} {followerData?.length}
 					</Button>
 				</div>
 				<p>{formattedDate}</p>

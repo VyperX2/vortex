@@ -5,6 +5,7 @@ import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 export const PATCH = async (request: Request, { params }: Params) => {
 	const { userId, following } = await request.json();
 	const creator = await User.findOne({ _id: params.id });
+	const currentUser = await User.findOne({ _id: userId });
 	const sameCreator = params.id === userId;
 	await connectToDB();
 	try {
@@ -18,6 +19,7 @@ export const PATCH = async (request: Request, { params }: Params) => {
 
 			if (creator?.followers.length === 0) {
 				creator.followers = [userId];
+				currentUser.following = creator._id;
 			} else {
 				const isFollowed = creator.followers.find(
 					(follower: any) => follower._id.toString() === userId
@@ -28,9 +30,11 @@ export const PATCH = async (request: Request, { params }: Params) => {
 				}
 
 				creator.followers.push(userId);
+				currentUser.following.push(userId);
 			}
 
 			await creator.save();
+			await currentUser.save();
 			return new Response(JSON.stringify(creator), { status: 200 });
 		} else {
 			if (!creator) {

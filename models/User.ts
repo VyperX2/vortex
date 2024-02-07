@@ -30,6 +30,10 @@ const userSchema = new Schema(
 			type: [{ type: Schema.Types.ObjectId, ref: "User" }],
 			default: [],
 		},
+		following: {
+			type: [{ type: Schema.Types.ObjectId, ref: "User" }],
+			default: [],
+		},
 	},
 	{ timestamps: true }
 );
