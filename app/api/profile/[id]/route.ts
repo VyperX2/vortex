@@ -25,12 +25,21 @@ export const PATCH = async (request: Request, { params }: Params) => {
 					(follower: any) => follower._id.toString() === userId
 				);
 
+				const isFollowing = currentUser.following.find(
+					(follower: any) => follower._id.toString() === userId
+				);
+
 				if (isFollowed !== undefined) {
 					return new Response(JSON.stringify(creator), { status: 200 });
+				} else {
+					creator.followers.push(userId);
 				}
 
-				creator.followers.push(userId);
-				currentUser.following.push(userId);
+				if (isFollowing !== undefined) {
+					return new Response(JSON.stringify(currentUser), { status: 200 });
+				} else {
+					currentUser.following.push(creator._id);
+				}
 			}
 
 			await creator.save();

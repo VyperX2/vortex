@@ -22,6 +22,7 @@ const fetchMongoUserByGoogleId = async (identifier: string) => {
 export const authConfig = {
 	pages: {
 		signIn: "/login",
+		newUser: "/register",
 	},
 	providers: [],
 	callbacks: {
@@ -51,6 +52,8 @@ export const authConfig = {
 		},
 		async authorized({ auth, request }: any) {
 			const user = auth?.user;
+			const isOnRegisterPage =
+				request.nextUrl?.pathname.startsWith("/register");
 			const isOnLoginPage = request.nextUrl?.pathname.startsWith("/login");
 			const isOnHomePage = request.nextUrl?.pathname.startsWith("/");
 
@@ -58,7 +61,7 @@ export const authConfig = {
 				return false;
 			}
 
-			if (isOnLoginPage && user) {
+			if ((isOnLoginPage || isOnRegisterPage) && user) {
 				return Response.redirect(new URL("/", request.nextUrl));
 			}
 
