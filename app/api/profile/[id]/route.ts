@@ -25,7 +25,14 @@ export const PATCH = async (request: Request, { params }: Params) => {
 					(follower: any) => follower._id.toString() === userId
 				);
 
+				const isFollowing = creator.followers.find(
+					(following: any) => following._id.toString() === userId
+				);
+
 				if (isFollowed !== undefined) {
+					return new Response(JSON.stringify(creator), { status: 200 });
+				}
+				if (isFollowing !== undefined) {
 					return new Response(JSON.stringify(creator), { status: 200 });
 				}
 
@@ -43,7 +50,12 @@ export const PATCH = async (request: Request, { params }: Params) => {
 			const filteredArray = creator.followers.filter(
 				(p: any) => p._id.toString() !== userId
 			);
+			const filteredArrayTwo = creator.followers.filter(
+				(p: any) => p._id.toString() !== userId
+			);
 			creator.followers = filteredArray;
+			currentUser.following = filteredArrayTwo;
+			await currentUser.save();
 			await creator.save();
 			return new Response(JSON.stringify(creator), { status: 200 });
 		}
