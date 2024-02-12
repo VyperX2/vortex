@@ -1,15 +1,14 @@
+import ProfileFeed from "@/components/ProfileFeed";
 import { auth } from "@/lib/auth";
 import Image from "next/image";
 
 const ProfilePage = async ({ params }: { params: { id: string } }) => {
-	const session = await auth();
 	const response = await fetch(
 		`http://localhost:3000/api/profile/${params.id}`,
 		{ cache: "no-store" }
 	);
 	const data = await response.json();
 	const { user, posts } = data;
-	console.log(user, posts);
 
 	return (
 		<>
@@ -40,7 +39,7 @@ const ProfilePage = async ({ params }: { params: { id: string } }) => {
 					<b>{user.following.length}</b> Following
 				</h1>
 			</div>
-			<div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 2xl:grid-cols-4 place-items-center mt-20 gap-y-12"></div>
+			<ProfileFeed posts={posts} />
 		</>
 	);
 };
