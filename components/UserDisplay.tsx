@@ -40,11 +40,7 @@ const UserDisplay = async () => {
 						</div>
 					</DropdownMenuTrigger>
 					<DropdownMenuContent>
-						<Link
-							href={`/profile/${
-								session?.user?.username || session?.user?.name
-							}`}
-						>
+						<Link href={`/profile/${session?.user?.id || session?.user?.id}`}>
 							<DropdownMenuItem className="text-md w-full flex items-center justify-center">
 								My Profile
 							</DropdownMenuItem>

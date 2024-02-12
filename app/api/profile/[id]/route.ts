@@ -1,6 +1,27 @@
 import { connectToDB } from "@/lib/database";
+import Post from "@/models/Post";
 import User from "@/models/User";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
+
+export const GET = async (request: Request, { params }: Params) => {
+	try {
+		console.log(params.id);
+		await connectToDB();
+		const currentUser = await User.findOne({ _id: params.id });
+		const userPosts = await Post.find({ creator: params.id });
+
+		const responseData = {
+			user: currentUser,
+			posts: userPosts,
+		};
+		if (!responseData) {
+			return new Response("NO DATA AVAILABLE", { status: 404 });
+		}
+		return new Response(JSON.stringify(responseData), { status: 200 });
+	} catch (error) {
+		console.log(error);
+	}
+};
 
 export const PATCH = async (request: Request, { params }: Params) => {
 	const { userId, following } = await request.json();

@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { Session } from "next-auth";
 import { Button } from "./ui/button";
+import Link from "next/link";
 
 const PostCard = ({
 	creator,
@@ -68,17 +69,22 @@ const PostCard = ({
 			<div className="flex items-center justify-between w-full  text-muted-foreground mt-4 mb-4">
 				<div className="flex items-center gap-3">
 					{creator?.img ? (
-						<Image
-							src={creator?.img}
-							className="rounded-full"
-							height={32}
-							width={32}
-							alt="post"
-						/>
+						<Link href={`/profile/${creator._id}`}>
+							<Image
+								src={creator?.img}
+								className="rounded-full"
+								height={32}
+								width={32}
+								alt="post"
+							/>
+						</Link>
 					) : (
-						<div className=" h-8 w-8 bg-secondary flex items-center justify-center rounded-full">
+						<Link
+							href={`/profile/${creator._id}`}
+							className=" h-8 w-8 bg-secondary flex items-center justify-center rounded-full"
+						>
 							{creator?.username[0].toUpperCase()}
-						</div>
+						</Link>
 					)}
 					<p className="text-foreground text-lg font-semibold">
 						{creator?.username}
