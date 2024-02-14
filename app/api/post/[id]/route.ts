@@ -1,8 +1,24 @@
 import Post from "@/models/Post";
 import { connectToDB } from "@/lib/database";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
-import User from "@/models/User";
-import { User as UserType } from "@/lib/types";
+
+export const GET = async (request: Request, { params }: Params) => {
+	try {
+		await connectToDB();
+
+		const currentPost = await Post.findOne({ _id: params.id }).populate(
+			"creator"
+		);
+		if (!currentPost) {
+			return new Response("Invalid post id", { status: 400 });
+		}
+		console.log(currentPost);
+		return new Response(JSON.stringify(currentPost), { status: 200 });
+	} catch (error) {
+		console.error(error);
+		return new Response("Failed to get post", { status: 500 });
+	}
+};
 
 export const PATCH = async (request: Request, { params }: Params) => {
 	try {

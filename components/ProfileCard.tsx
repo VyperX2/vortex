@@ -1,5 +1,6 @@
 import { Post } from "@/lib/types";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const ProfileCard = ({
@@ -11,7 +12,10 @@ const ProfileCard = ({
 	createdAt,
 }: Post) => {
 	return (
-		<div className="w-96 h-[600px] rounded-lg relative overflow-hidden ">
+		<Link
+			href={`/post/${_id}`}
+			className="w-96 h-[600px] rounded-lg relative overflow-hidden "
+		>
 			<Image
 				src={img}
 				className=""
@@ -19,7 +23,7 @@ const ProfileCard = ({
 				objectFit="cover"
 				alt="post"
 			/>
-		</div>
+		</Link>
 	);
 };
 
