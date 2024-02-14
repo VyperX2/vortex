@@ -11,12 +11,12 @@ const ProfileCard = ({
 	createdAt,
 }: Post) => {
 	return (
-		<div className="w-96">
+		<div className="w-96 h-[600px] rounded-lg relative overflow-hidden ">
 			<Image
 				src={img}
-				className="rounded-lg h-[75vh] md:w-[350%] w-[225%] object-cover"
-				height={800}
-				width={300}
+				className=""
+				layout="fill"
+				objectFit="cover"
 				alt="post"
 			/>
 		</div>

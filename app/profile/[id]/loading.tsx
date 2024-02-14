@@ -23,7 +23,7 @@ const loading = () => {
 						Following
 					</h1>
 				</div>
-				<div className="md:ml-4 mt-8 grid grid-cols-1 md:grid-cols-3 place-items-center space-y-8 gap-8">
+				<div className="md:ml-4 mt-8 grid grid-cols-1 md:grid-cols-3 place-items-center gap-8 ">
 					<Skeleton className="w-96 h-[75vh]" />
 					<Skeleton className="w-96 h-[75vh]" />
 					<Skeleton className="w-96 h-[75vh]" />
