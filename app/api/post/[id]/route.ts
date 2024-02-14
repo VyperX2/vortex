@@ -12,7 +12,6 @@ export const GET = async (request: Request, { params }: Params) => {
 		if (!currentPost) {
 			return new Response("Invalid post id", { status: 400 });
 		}
-		console.log(currentPost);
 		return new Response(JSON.stringify(currentPost), { status: 200 });
 	} catch (error) {
 		console.error(error);

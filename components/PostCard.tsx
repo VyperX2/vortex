@@ -102,14 +102,15 @@ const PostCard = ({
 				<p>{formattedDate}</p>
 			</div>
 			<p className=" mb-4 text-muted-foreground ">{caption}</p>
-
-			<Image
-				src={img}
-				className="rounded-lg h-[75vh] md:w-[350%] w-[225%] object-cover"
-				height={800}
-				width={800}
-				alt="post"
-			/>
+			<Link href={`/post/${_id}`}>
+				<Image
+					src={img}
+					className="rounded-lg h-[75vh] md:w-[350%] w-[225%] object-cover"
+					height={800}
+					width={800}
+					alt="post"
+				/>
+			</Link>
 			<div className="flex items-center justify-center gap-8 mt-4">
 				<button
 					onClick={() => (!isLiked ? updateLikes(true) : updateLikes(false))}
