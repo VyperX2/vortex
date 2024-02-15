@@ -6,7 +6,7 @@ const PostPage = async ({ params }: { params: { id: string } }) => {
 	const data = await response.json();
 	const session = await auth();
 	return (
-		<div>
+		<div className="container grid grid-cols-1 place-items-center gap-8">
 			<PostCard {...data} session={session} />
 		</div>
 	);
