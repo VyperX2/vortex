@@ -11,7 +11,7 @@ const ProfilePage = async ({ params }: { params: { id: string } }) => {
 
 	return (
 		<>
-			<div className="flex justify-center mt-9 items-center">
+			<div className="flex justify-center mt-9 items-center overflow-hidden">
 				{user.img ? (
 					<Image
 						src={`${user?.img}`}
