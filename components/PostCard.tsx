@@ -67,39 +67,62 @@ const PostCard = ({
 			className="lg:w-fit flex flex-col bg-secondary/20 lg:container  px-4 w-[90vw] lg:items-start items-start md:items-center py-8 rounded-lg border border-secondary/30 overflow-hidden"
 		>
 			<div className="flex items-center justify-between w-full  text-muted-foreground mt-4 mb-4">
-				<div className="flex items-center gap-3">
+				<div className="flex md:flex-row flex-col md:items-center gap-3">
 					{creator?.img ? (
-						<Link href={`/profile/${creator._id}`}>
+						<Link
+							className="flex items-center gap-3"
+							href={`/profile/${creator._id}`}
+						>
 							<Image
 								src={creator?.img}
-								className="rounded-full"
+								className="rounded-full h-8 w-8"
 								height={32}
 								width={32}
 								alt="post"
 							/>
+							<p className="text-foreground text-lg font-semibold block md:hidden">
+								{creator?.username}
+							</p>
 						</Link>
 					) : (
-						<Link
-							href={`/profile/${creator._id}`}
-							className=" h-8 w-8 bg-secondary flex items-center justify-center rounded-full"
-						>
-							{creator?.username[0].toUpperCase()}
-						</Link>
+						<div className="flex items-center gap-3">
+							<Link
+								href={`/profile/${creator._id}`}
+								className=" h-8 w-8 bg-secondary flex items-center justify-center rounded-full"
+							>
+								{creator?.username[0].toUpperCase()}
+							</Link>
+							<p className="text-foreground text-lg font-semibold block md:hidden">
+								{creator?.username}
+							</p>
+						</div>
 					)}
-					<p className="text-foreground text-lg font-semibold">
+					<p className="text-foreground text-lg font-semibold hidden md:block">
 						{creator?.username}
 					</p>
+					<div className="md:hidden flex flex-col gap-2">
+						<Button
+							onClick={() =>
+								!isFollowed ? updateFollowers(true) : updateFollowers(false)
+							}
+							variant="outline"
+							className="h-8"
+						>
+							{isFollowed ? "Unfollow" : "Follow"} {followerData?.length}
+						</Button>
+						<p>{formattedDate}</p>
+					</div>
 					<Button
 						onClick={() =>
 							!isFollowed ? updateFollowers(true) : updateFollowers(false)
 						}
 						variant="outline"
-						className="h-8"
+						className="h-8 hidden md:block "
 					>
 						{isFollowed ? "Unfollow" : "Follow"} {followerData?.length}
 					</Button>
+					<p className="hidden md:block">{formattedDate}</p>
 				</div>
-				<p>{formattedDate}</p>
 			</div>
 			<p className=" mb-4 text-muted-foreground ">{caption}</p>
 			<Link href={`/post/${_id}`}>
