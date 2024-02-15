@@ -1,37 +1,20 @@
-import { PhotoProps } from "@/lib/types";
-import Image from "next/image";
-import Link from "next/link";
+import ProfileCard from "@/components/ProfileCard";
 
 const ExplorePage: React.FC = async () => {
-  // NO NEED FOR CLIENT COMPONENTS TO FETCH DATA
-  // PAGES SHOULD BE SERVER COMPONENTS
-  const fetchData = async () => {
-    try {
-      const response = await fetch("https://jsonplaceholder.typicode.com/posts");
-      const data: PhotoProps[] = await response.json();
-      return data;
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
-  const data = await fetchData();
-
-  return (
-    <div className="grid grid-cols-3 ml-52 mt-5">
-      {data?.map((post) => (
-        <Link href={`/${post.id}`} key={post.id}>
-          <h1 className="font-bold ml-[50px] mb-8">{post.title.slice(0, 20)}</h1>
-          <Image
-            src="/okiiiiiiiiiiiiiiiiiii.png"
-            alt="Placeholder Image"
-            width={250}
-            height={250}
-            className="mb-5"
-          />
-        </Link>
-      ))}
-    </div>
-  );
+	const response = await fetch("http://localhost:3000/api/post", {
+		cache: "no-store",
+	});
+	const data = await response.json();
+	console.log(Array.isArray(data) && data.length > 0);
+	return (
+		<div className="md:ml-4 mt-8 grid grid-cols-1 md:grid-cols-3 place-items-center gap-y-8">
+			{Array.isArray(data) && data.length > 0 ? (
+				data.map((post) => <ProfileCard key={post._id} {...post} />)
+			) : (
+				<p>No posts avaiable</p>
+			)}
+		</div>
+	);
 };
 
 export default ExplorePage;

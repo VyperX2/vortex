@@ -1,5 +1,4 @@
 import ProfileFeed from "@/components/ProfileFeed";
-import { auth } from "@/lib/auth";
 import Image from "next/image";
 
 const ProfilePage = async ({ params }: { params: { id: string } }) => {

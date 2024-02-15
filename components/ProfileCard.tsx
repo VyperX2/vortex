@@ -3,14 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const ProfileCard = ({
-	creator,
-	img,
-	caption,
-	_id,
-	likes,
-	createdAt,
-}: Post) => {
+const ProfileCard = ({ img, _id }: Post) => {
+	console.log(img);
 	return (
 		<Link
 			href={`/post/${_id}`}
