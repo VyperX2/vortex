@@ -34,6 +34,7 @@ export interface User {
 	img: string;
 	__v: number;
 	followers: string[];
+	following: string[];
 }
 
 export interface Post {
