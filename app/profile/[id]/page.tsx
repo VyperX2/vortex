@@ -1,5 +1,4 @@
 import ProfileFeed from "@/components/ProfileFeed";
-import Image from "next/image";
 import Link from "next/link";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 

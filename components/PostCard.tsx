@@ -6,6 +6,7 @@ import { useState } from "react";
 import { Session } from "next-auth";
 import { Button } from "./ui/button";
 import Link from "next/link";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 const PostCard = ({
 	creator,
@@ -68,35 +69,21 @@ const PostCard = ({
 		>
 			<div className="flex items-center justify-between w-full  text-muted-foreground mt-4 mb-4">
 				<div className="flex md:flex-row flex-col md:items-center gap-3">
-					{creator?.img ? (
-						<Link
-							className="flex items-center gap-3"
-							href={`/profile/${creator._id}`}
-						>
-							<Image
-								src={creator?.img}
-								className="rounded-full h-8 w-8"
-								height={32}
-								width={32}
-								alt="post"
-							/>
-							<p className="text-foreground text-lg font-semibold block md:hidden">
-								{creator?.username}
-							</p>
-						</Link>
-					) : (
-						<div className="flex items-center gap-3">
-							<Link
-								href={`/profile/${creator._id}`}
-								className=" h-8 w-8 bg-secondary flex items-center justify-center rounded-full"
-							>
+					<Link
+						className="flex items-center gap-3"
+						href={`/profile/${creator._id}`}
+					>
+						<Avatar className="h-10 w-10">
+							<AvatarImage src={creator.img} />
+							<AvatarFallback>
 								{creator?.username[0].toUpperCase()}
-							</Link>
-							<p className="text-foreground text-lg font-semibold block md:hidden">
-								{creator?.username}
-							</p>
-						</div>
-					)}
+							</AvatarFallback>
+						</Avatar>
+						<p className="text-foreground text-lg font-semibold block md:hidden">
+							{creator?.username}
+						</p>
+					</Link>
+
 					<p className="text-foreground text-lg font-semibold hidden md:block">
 						{creator?.username}
 					</p>
