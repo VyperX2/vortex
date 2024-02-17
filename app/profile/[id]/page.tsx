@@ -1,6 +1,7 @@
 import ProfileFeed from "@/components/ProfileFeed";
 import Image from "next/image";
 import Link from "next/link";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 const ProfilePage = async ({ params }: { params: { id: string } }) => {
 	const response = await fetch(
@@ -13,25 +14,14 @@ const ProfilePage = async ({ params }: { params: { id: string } }) => {
 	return (
 		<>
 			<div className="flex justify-evenly  mt-9 items-center overflow-hidden">
-				{user.img ? (
-					<div className="flex items-center">
-						<Image
-							src={`${user?.img}`}
-							alt="profile_img"
-							height={56}
-							width={56}
-							className=" h-14 w-14 rounded-full"
-						/>
-						<p className="font-bold ml-5">{user?.username}</p>
-					</div>
-				) : (
-					<div className="flex items-center">
-						<div className="h-14 w-14 rounded-full bg-secondary flex items-center justify-center font-bold text-2xl">
-							{user?.username[0].toUpperCase()}
-						</div>
-						<p className="font-bold ml-5">{user?.username}</p>
-					</div>
-				)}
+				<div className="flex items-center gap-2">
+					<Avatar className="h-12 w-12">
+						<AvatarImage src={user.img} />
+						<AvatarFallback>{user?.username[0].toUpperCase()}</AvatarFallback>
+					</Avatar>
+					<p className="font-semibold">{user?.username}</p>
+				</div>
+
 				<div className="flex justify-center items-center mr-[80px] ml-[60px]">
 					<h1 className="mr-5 flex flex-col items-center">
 						<b>{posts.length}</b>{" "}
