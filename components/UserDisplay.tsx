@@ -19,7 +19,7 @@ const UserDisplay = async () => {
 				<DropdownMenu>
 					<DropdownMenuTrigger className="flex items-center gap-4 pl-4 outline-none">
 						<Avatar className="h-10 w-10">
-							<AvatarImage src={session?.user?.image} />
+							<AvatarImage src={session?.user?.image ?? ""} />
 							<AvatarFallback>
 								{session?.user?.username[0].toUpperCase()}
 							</AvatarFallback>
