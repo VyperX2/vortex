@@ -8,6 +8,7 @@ import {
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { handleLogout } from "@/lib/actions";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
 const UserDisplay = async () => {
 	const session = await auth();
@@ -17,19 +18,13 @@ const UserDisplay = async () => {
 			{
 				<DropdownMenu>
 					<DropdownMenuTrigger className="flex items-center gap-4 pl-4 outline-none">
-						{session?.user?.image ? (
-							<Image
-								src={session?.user?.image}
-								alt="profile_img"
-								height={56}
-								width={56}
-								className=" h-14 w-14 rounded-full"
-							/>
-						) : (
-							<div className="h-14 w-14 rounded-full bg-secondary flex items-center justify-center font-bold text-2xl">
+						<Avatar className="h-10 w-10">
+							<AvatarImage src={session?.user?.image} />
+							<AvatarFallback>
 								{session?.user?.username[0].toUpperCase()}
-							</div>
-						)}
+							</AvatarFallback>
+						</Avatar>
+
 						<div className="flex flex-col">
 							<p className="font-semibold">
 								{session?.user?.name || session?.user?.username}
