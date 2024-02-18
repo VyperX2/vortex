@@ -1,12 +1,5 @@
 import Follower from "@/components/Follower";
-import {
-	Card,
-	CardContent,
-	CardDescription,
-	CardFooter,
-	CardHeader,
-	CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { User } from "@/lib/types";
 
 const FollowerPage = async ({ params }: { params: { id: string } }) => {
@@ -23,7 +16,7 @@ const FollowerPage = async ({ params }: { params: { id: string } }) => {
 				</CardHeader>
 				<CardContent className="flex flex-col gap-4">
 					{data.map((follower) => (
-						<Follower {...follower} />
+						<Follower {...follower} creatorId={params.id} />
 					))}
 				</CardContent>
 			</Card>
