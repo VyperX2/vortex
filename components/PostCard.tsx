@@ -104,7 +104,7 @@ const PostCard = ({
 							!isFollowed ? updateFollowers(true) : updateFollowers(false)
 						}
 						variant="outline"
-						className="h-8 hidden md:block "
+						className=" hidden md:block "
 					>
 						{isFollowed ? "Unfollow" : "Follow"} {followerData?.length}
 					</Button>

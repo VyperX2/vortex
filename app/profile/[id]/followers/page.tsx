@@ -1,5 +1,6 @@
 import Follower from "@/components/Follower";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { auth } from "@/lib/auth";
 import { User } from "@/lib/types";
 
 const FollowerPage = async ({ params }: { params: { id: string } }) => {
@@ -8,6 +9,7 @@ const FollowerPage = async ({ params }: { params: { id: string } }) => {
 		{ method: "GET", cache: "no-store" }
 	);
 	const data: User[] = await response.json();
+	const session = await auth();
 	return (
 		<div className="container grid grid-cols-1 place-items-center gap-8">
 			<Card className="w-full">
@@ -16,7 +18,12 @@ const FollowerPage = async ({ params }: { params: { id: string } }) => {
 				</CardHeader>
 				<CardContent className="flex flex-col gap-4">
 					{data.map((follower) => (
-						<Follower key={follower._id} {...follower} creatorId={params.id} />
+						<Follower
+							key={follower._id}
+							{...follower}
+							creatorId={params.id}
+							session={session}
+						/>
 					))}
 				</CardContent>
 			</Card>
