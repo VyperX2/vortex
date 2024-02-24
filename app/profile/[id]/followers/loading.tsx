@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 const loading = () => {
@@ -16,9 +15,6 @@ const loading = () => {
 							<Skeleton className="text-md w-[250px] h-4 font-semibold" />
 							<Skeleton className="text-sm w-[250px] h-4 text-muted-foreground" />
 						</div>
-						<Button className="ml-auto w-[100px]">
-							<Skeleton className="w-full h-full" />
-						</Button>
 					</div>
 					<div className="py-3 px-2 transition-all rounded-md w-full flex items-center gap-2 hover:bg-secondary/25">
 						<Skeleton className="h-12 w-12 rounded-full" />
@@ -27,9 +23,6 @@ const loading = () => {
 							<Skeleton className="text-md w-[250px] h-4 font-semibold" />
 							<Skeleton className="text-sm w-[250px] h-4 text-muted-foreground" />
 						</div>
-						<Button className="ml-auto w-[100px]">
-							<Skeleton className="w-full h-full" />
-						</Button>
 					</div>
 					<div className="py-3 px-2 transition-all rounded-md w-full flex items-center gap-2 hover:bg-secondary/25">
 						<Skeleton className="h-12 w-12 rounded-full" />
@@ -38,9 +31,6 @@ const loading = () => {
 							<Skeleton className="text-md w-[250px] h-4 font-semibold" />
 							<Skeleton className="text-sm w-[250px] h-4 text-muted-foreground" />
 						</div>
-						<Button className="ml-auto w-[100px]">
-							<Skeleton className="w-full h-full" />
-						</Button>
 					</div>
 				</CardContent>
 			</Card>
