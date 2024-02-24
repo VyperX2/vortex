@@ -1,15 +1,13 @@
 import Follower from "@/components/Follower";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { auth } from "@/lib/auth";
 import { User } from "@/lib/types";
 
 const FollowingPage = async ({ params }: { params: { id: string } }) => {
 	const response = await fetch(
-		`http://localhost:3000/api/profile/${params.id}/followers`,
+		`http://localhost:3000/api/profile/${params.id}/following`,
 		{ method: "GET", cache: "no-store" }
 	);
 	const data: User[] = await response.json();
-	const session = await auth();
 	return (
 		<div className="container grid grid-cols-1 place-items-center gap-8">
 			<Card className="w-full">
