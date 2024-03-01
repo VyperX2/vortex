@@ -13,7 +13,7 @@ import { AvatarFallback } from "@radix-ui/react-avatar";
 
 const UserCard = ({ img, email, followers, username, _id }: User) => {
 	return (
-		<div className="w-[300px] bg-secondary/5 md:w-[350px]  rounded-xl border  text-card-foreground shadow flex flex-col items-center">
+		<div className="w-[300px] bg-secondary/5 hover:bg-secondary/10 transition-all md:w-[350px]  rounded-xl border  text-card-foreground shadow flex flex-col items-center">
 			<Link href={`/profile/${_id}`}>
 				<CardHeader className="flex flex-col items-center ">
 					<Avatar className="h-20 w-20 mb-4">
