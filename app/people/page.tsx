@@ -8,9 +8,9 @@ const PeoplePage = async () => {
 	const data: User[] = await res.json();
 
 	return (
-		<div>
+		<div className="md:ml-4 mt-8 grid grid-cols-1 2xl:grid-cols-3 md:grid-cols-2 place-items-center gap-y-8">
 			{data.map((user) => (
-				<UserCard />
+				<UserCard key={user._id} {...user} />
 			))}
 		</div>
 	);
