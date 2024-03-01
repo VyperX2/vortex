@@ -4,6 +4,8 @@ import { type Post } from "@/lib/types";
 import Image from "next/image";
 import { useState } from "react";
 import { Session } from "next-auth";
+import { FaBookmark } from "react-icons/fa";
+import { FaRegBookmark } from "react-icons/fa";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
@@ -135,6 +137,10 @@ const PostCard = ({
 				</button>
 				<button>
 					<FaRegComment />
+				</button>
+				<button>
+					<FaRegBookmark />
+					{/* <FaBookmark /> */}
 				</button>
 			</div>
 		</div>
