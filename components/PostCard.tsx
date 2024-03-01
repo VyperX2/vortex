@@ -23,8 +23,10 @@ const PostCard = ({
 	const [followerData, setFollowerData] = useState<string[]>(
 		creator?.followers
 	);
+	const [savedData, setSavedData] = useState<string[]>(creator?.saved);
 	const isLiked = likeData?.includes(session?.user?.id || "");
 	const isFollowed = followerData?.includes(session?.user?.id || "");
+	const isSaved = savedData?.includes(_id || "");
 	const timestamp = createdAt;
 	const dateObject = new Date(timestamp);
 	const day = dateObject.getDate();
@@ -59,6 +61,22 @@ const PostCard = ({
 			});
 			const data = await response.json();
 			setFollowerData(data.followers);
+		} catch (error) {
+			console.log(error);
+		}
+	}
+	async function updateSaved(isSaving: boolean) {
+		try {
+			const response = await fetch(`/api/profile/${creator._id}/saved`, {
+				method: "PATCH",
+				body: JSON.stringify({
+					postId: _id,
+					saving: isSaving,
+					userId: session?.user?.id,
+				}),
+			});
+			const data = await response.json();
+			setSavedData(data.saved);
 		} catch (error) {
 			console.log(error);
 		}
@@ -138,9 +156,10 @@ const PostCard = ({
 				<button>
 					<FaRegComment />
 				</button>
-				<button>
-					<FaRegBookmark />
-					{/* <FaBookmark /> */}
+				<button
+					onClick={() => (!isSaved ? updateSaved(true) : updateSaved(false))}
+				>
+					{!isSaved ? <FaRegBookmark /> : <FaBookmark />}
 				</button>
 			</div>
 		</div>

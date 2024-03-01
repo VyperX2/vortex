@@ -3,9 +3,10 @@ import User from "@/models/User";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 
 export const PATCH = async (request: Request, { params }: Params) => {
-	const { saving, postId } = await request.json();
-	const creator = await User.findOne({ _id: params.id });
+	const { saving, postId, userId } = await request.json();
+	const creator = await User.findOne({ _id: userId });
 	await connectToDB();
+	console.log(saving);
 	try {
 		if (saving) {
 			if (!creator) {
@@ -26,14 +27,14 @@ export const PATCH = async (request: Request, { params }: Params) => {
 					creator.saved.push(postId);
 				}
 			}
-
+			console.log(creator);
 			await creator.save();
 			return new Response(JSON.stringify(creator), { status: 200 });
 		} else {
 			if (!creator) {
 				return new Response("Invalid input", { status: 400 });
 			}
-			const filteredArray = creator.saved.filter(
+			const filteredArray = creator.saved?.filter(
 				(p: any) => p._id.toString() !== postId
 			);
 
