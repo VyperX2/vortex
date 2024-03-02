@@ -6,7 +6,6 @@ export const PATCH = async (request: Request, { params }: Params) => {
 	const { saving, postId, userId } = await request.json();
 	const creator = await User.findOne({ _id: userId });
 	await connectToDB();
-	console.log(saving);
 	try {
 		if (saving) {
 			if (!creator) {

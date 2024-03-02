@@ -2,8 +2,15 @@
 import { tabs } from "@/lib/constants.tsx";
 import SidebarLink from "./SidebarLink";
 import { usePathname } from "next/navigation";
+import { Session } from "next-auth";
 
-const Sidebar = ({ children }: { children: React.ReactNode }) => {
+const Sidebar = ({
+	children,
+	session,
+}: {
+	children: React.ReactNode;
+	session: Session;
+}) => {
 	const pathname = usePathname();
 
 	return (
@@ -19,7 +26,12 @@ const Sidebar = ({ children }: { children: React.ReactNode }) => {
 					{children}
 					<ul className="flex flex-col ">
 						{tabs.map((tab, index) => (
-							<SidebarLink {...tab} index={index} key={index} />
+							<SidebarLink
+								{...tab}
+								session={session}
+								index={index}
+								key={index}
+							/>
 						))}
 					</ul>
 				</nav>

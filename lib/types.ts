@@ -1,3 +1,4 @@
+import { Session } from "next-auth";
 import { ReactElement } from "react";
 
 export interface SidebarLinkProps {
@@ -5,6 +6,7 @@ export interface SidebarLinkProps {
 	href: string;
 	icon: ReactElement;
 	index: number;
+	session: Session;
 }
 export interface UserFameProps {
 	posts: number;
