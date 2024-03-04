@@ -2,7 +2,7 @@
 import { FaRegHeart, FaRegComment, FaHeart } from "react-icons/fa";
 import { type Post } from "@/lib/types";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Session } from "next-auth";
 import { FaBookmark } from "react-icons/fa";
 import { FaRegBookmark } from "react-icons/fa";
@@ -81,6 +81,21 @@ const PostCard = ({
 			console.log(error);
 		}
 	}
+
+	async function getFollowers() {
+		try {
+			const response = await fetch(`/api/profile/${session?.user?.id}`, {
+				method: "GET",
+			});
+			const data = await response.json();
+			setSavedData(data.user.saved);
+		} catch (error) {
+			console.log(error);
+		}
+	}
+	useEffect(() => {
+		getFollowers();
+	}, []);
 
 	return (
 		<div

@@ -26,7 +26,6 @@ export const PATCH = async (request: Request, { params }: Params) => {
 					creator.saved.push(postId);
 				}
 			}
-			console.log(creator);
 			await creator.save();
 			return new Response(JSON.stringify(creator), { status: 200 });
 		} else {
