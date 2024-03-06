@@ -31,8 +31,6 @@ export default async function RootLayout({
 					</Sidebar>
 					<main className="flex-1 pt-4">
 						{children}
-						{/* <Menu /> */}
-						{/* <Footer /> */}
 					</main>
 				</EdgeStoreProvider>
 			</body>
