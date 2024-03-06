@@ -19,7 +19,8 @@ const fetchMongoUserByGoogleId = async (identifier: string) => {
 	}
 };
 
-export const authConfig = {
+// Higher-order function that takes fetchMongoUserByGoogleId as an argument
+export const getAuthConfig = (fetchMongoUserByGoogleId: any) => ({
 	pages: {
 		signIn: "/login",
 		newUser: "/register",
@@ -68,4 +69,6 @@ export const authConfig = {
 			return true;
 		},
 	},
-};
+});
+
+export const authConfig = getAuthConfig(fetchMongoUserByGoogleId);
