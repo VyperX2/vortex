@@ -141,7 +141,7 @@ const PostCard = ({
 						variant="outline"
 						className=" hidden md:block "
 					>
-						{isFollowed ? "Unfollow" : "Follow"} {followerData?.length}
+						{isFollowed ? "Unfollow" : "Follow"}
 					</Button>
 					<p className="hidden md:block text-sm">{formattedDate}</p>
 				</div>
