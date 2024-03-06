@@ -16,7 +16,7 @@ const FollowingPage = async ({ params }: { params: { id: string } }) => {
 				</CardHeader>
 				<CardContent className="flex flex-col gap-4">
 					{data.map((follower) => (
-						<Follower key={follower._id} {...follower} creatorId={params.id} />
+						<Follower key={follower._id} {...follower} />
 					))}
 				</CardContent>
 			</Card>
