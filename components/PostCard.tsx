@@ -130,9 +130,9 @@ const PostCard = ({
 							variant="outline"
 							className="h-8"
 						>
-							{isFollowed ? "Unfollow" : "Follow"} {followerData?.length}
+							{isFollowed ? "Unfollow" : "Follow"}
 						</Button>
-						<p>{formattedDate}</p>
+						<p className="text-sm">{formattedDate}</p>
 					</div>
 					<Button
 						onClick={() =>
@@ -143,10 +143,10 @@ const PostCard = ({
 					>
 						{isFollowed ? "Unfollow" : "Follow"} {followerData?.length}
 					</Button>
-					<p className="hidden md:block">{formattedDate}</p>
+					<p className="hidden md:block text-sm">{formattedDate}</p>
 				</div>
 			</div>
-			<p className=" mb-4 text-muted-foreground ">{caption}</p>
+			<p className=" mb-4 text-muted-foreground font-semibold">{caption}</p>
 			<Link href={`/post/${_id}`}>
 				<Image
 					src={img}
