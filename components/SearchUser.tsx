@@ -11,7 +11,6 @@ import { useEffect, useState } from "react";
 import { IoSearch } from "react-icons/io5";
 import { Input } from "./ui/input";
 import { User } from "@/lib/types";
-import Follower from "./Follower";
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
@@ -31,10 +30,6 @@ export default function SearchUser() {
 		getUsers();
 	}, []);
 
-	useEffect(() => {
-		console.log(users);
-	}, [users]);
-
 	return (
 		<>
 			<IoSearch
@@ -47,7 +42,7 @@ export default function SearchUser() {
 				className="pl-8 py-5 flex-1 hover:bg-secondary cursor-pointer"
 			/>
 			<CommandDialog open={open} onOpenChange={setOpen}>
-				<CommandInput placeholder="Type a command or search..." />
+				<CommandInput placeholder="Search for users..." />
 				<CommandList>
 					<CommandEmpty>No results found.</CommandEmpty>
 					<CommandGroup heading="Suggestions">

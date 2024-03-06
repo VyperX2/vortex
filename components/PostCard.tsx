@@ -168,9 +168,7 @@ const PostCard = ({
 					)}
 					{likeData?.length}
 				</button>
-				<button>
-					<FaRegComment />
-				</button>
+
 				<button
 					onClick={() => (!isSaved ? updateSaved(true) : updateSaved(false))}
 				>
