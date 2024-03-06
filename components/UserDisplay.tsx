@@ -1,5 +1,4 @@
 import { auth } from "@/lib/auth";
-import Image from "next/image";
 import Link from "next/link";
 import {
 	DropdownMenu,
@@ -12,7 +11,6 @@ import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
 const UserDisplay = async () => {
 	const session = await auth();
-
 	return (
 		<>
 			{
@@ -21,7 +19,8 @@ const UserDisplay = async () => {
 						<Avatar className="h-10 w-10">
 							<AvatarImage src={session?.user?.image ?? ""} />
 							<AvatarFallback>
-								{session?.user?.username[0].toUpperCase()}
+								{session?.user?.username &&
+									session?.user?.username[0].toUpperCase()}
 							</AvatarFallback>
 						</Avatar>
 

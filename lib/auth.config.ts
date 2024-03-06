@@ -1,26 +1,4 @@
-import User from "@/models/User";
-import { connectToDB } from "./database";
-
-const fetchMongoUserByGoogleId = async (identifier: string) => {
-	try {
-		await connectToDB();
-		const user = await User.findOne({ provider: identifier });
-
-		if (!user) {
-			console.log("User doesnt exist");
-			return null;
-		}
-		console.log(user);
-
-		return user;
-	} catch (error) {
-		console.log(error);
-		return null;
-	}
-};
-
-// Higher-order function that takes fetchMongoUserByGoogleId as an argument
-export const getAuthConfig = (fetchMongoUserByGoogleId: any) => ({
+export const authConfig = {
 	pages: {
 		signIn: "/login",
 		newUser: "/register",
@@ -29,18 +7,9 @@ export const getAuthConfig = (fetchMongoUserByGoogleId: any) => ({
 	callbacks: {
 		async jwt({ token, user }: any) {
 			if (user) {
-				// If the user logs in with Google, fetch MongoDB user information
-				const mongoUser = await fetchMongoUserByGoogleId(user.id);
-
-				if (mongoUser) {
-					// Use the MongoDB _id
-					token.id = mongoUser._id;
-					token.username = mongoUser.username;
-				} else {
-					// For other providers, use the existing user.id
-					token.id = user.id;
-					token.username = user.username;
-				}
+				console.log(user, token);
+				token.id = user.id;
+				token.username = user.username;
 			}
 			return token;
 		},
@@ -69,6 +38,4 @@ export const getAuthConfig = (fetchMongoUserByGoogleId: any) => ({
 			return true;
 		},
 	},
-});
-
-export const authConfig = getAuthConfig(fetchMongoUserByGoogleId);
+};

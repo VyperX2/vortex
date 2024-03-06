@@ -58,10 +58,10 @@ export const {
 		async signIn({ user, account, profile }) {
 			try {
 				await connectToDB();
-				// console.log({ user, account, profile });
+				console.log({ user, account, profile });
 
 				if (account?.provider === "google") {
-					const IsUser = await User.findOne({ email: profile?.email });
+					let IsUser = await User.findOne({ email: profile?.email });
 
 					if (!IsUser) {
 						console.log("Creating New User");
@@ -76,9 +76,12 @@ export const {
 
 						await newUser.save();
 						console.log("User Created");
+						IsUser = newUser;
 					}
-
+					console.log(IsUser);
 					console.log("User Exists");
+
+					user.id = IsUser._id;
 				}
 				return true;
 			} catch (error) {
