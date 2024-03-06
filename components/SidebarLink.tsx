@@ -2,9 +2,6 @@
 import { SidebarLinkProps } from "@/lib/types";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { Session } from "next-auth";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
 
 const SidebarLink = ({
 	href,
@@ -12,7 +9,7 @@ const SidebarLink = ({
 	icon,
 	index,
 	session,
-}: SidebarLinkProps & { session: Session }) => {
+}: SidebarLinkProps) => {
 	if (href === "/saved") {
 		href = `/saved/${session?.user?.id}`;
 	}

@@ -6,7 +6,7 @@ export interface SidebarLinkProps {
 	href: string;
 	icon: ReactElement;
 	index: number;
-	session: Session;
+	session: Session | null;
 }
 export interface UserFameProps {
 	posts: number;

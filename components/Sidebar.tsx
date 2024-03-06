@@ -9,7 +9,7 @@ const Sidebar = ({
 	session,
 }: {
 	children: React.ReactNode;
-	session: Session;
+	session: Session | null;
 }) => {
 	const pathname = usePathname();
 
