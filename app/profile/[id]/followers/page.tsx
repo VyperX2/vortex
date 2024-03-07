@@ -5,7 +5,7 @@ import { User } from "@/lib/types";
 
 const FollowerPage = async ({ params }: { params: { id: string } }) => {
 	const response = await fetch(
-		`http://localhost:3000/api/profile/${params.id}/followers`,
+		`https://vortex-neon.vercel.app/api/profile/${params.id}/followers`,
 		{ method: "GET", cache: "no-store" }
 	);
 	const data: User[] = await response.json();

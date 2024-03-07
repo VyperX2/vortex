@@ -4,7 +4,7 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 const ProfilePage = async ({ params }: { params: { id: string } }) => {
 	const response = await fetch(
-		`http://localhost:3000/api/profile/${params.id}`,
+		`https://vortex-neon.vercel.app/api/profile/${params.id}`,
 		{ cache: "no-store" }
 	);
 	const data = await response.json();

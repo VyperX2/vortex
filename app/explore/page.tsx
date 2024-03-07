@@ -1,7 +1,7 @@
 import ProfileCard from "@/components/ProfileCard";
 
 const ExplorePage: React.FC = async () => {
-	const response = await fetch("http://localhost:3000/api/post", {
+	const response = await fetch("https://vortex-neon.vercel.app/api/post", {
 		cache: "no-store",
 	});
 	const data = await response.json();

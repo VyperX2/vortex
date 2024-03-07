@@ -2,7 +2,7 @@ import UserCard from "@/components/UserCard";
 import { User } from "@/lib/types";
 
 const PeoplePage = async () => {
-	const res = await fetch("http://localhost:3000/api/people", {
+	const res = await fetch("https://vortex-neon.vercel.app/api/people", {
 		cache: "no-store",
 	});
 	const data: User[] = await res.json();
