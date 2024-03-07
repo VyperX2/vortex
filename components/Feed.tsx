@@ -8,7 +8,7 @@ const Feed = async () => {
 	});
 	const data: Post[] = await res.json();
 	const session = await auth();
-
+	console.log(data);
 	return (
 		<div className="container grid grid-cols-1 place-items-center gap-8">
 			{Array.isArray(data) && data.length > 0 ? (
