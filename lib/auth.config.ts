@@ -29,17 +29,16 @@ export const authConfig = {
 
 			// Allow access to the home page, login page, and register page regardless of the user's login status
 			if (isOnHomePage || isOnLoginPage || isOnRegisterPage) {
+				// If the user is logged in and tries to access the login or register page, redirect to the home page
+				if (user && (isOnLoginPage || isOnRegisterPage)) {
+					return Response.redirect(new URL("/", request.nextUrl));
+				}
 				return true;
 			}
 
 			// If the user is not on the home, login, or register page and is not logged in, deny access
 			if (!user) {
 				return false;
-			}
-
-			// If the user is logged in and tries to access the login or register page, redirect to the home page
-			if ((isOnLoginPage || isOnRegisterPage) && user) {
-				return Response.redirect(new URL("/", request.nextUrl));
 			}
 
 			return true;
