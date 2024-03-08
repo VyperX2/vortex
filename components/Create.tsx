@@ -39,7 +39,7 @@ const Create = ({ session }: { session: Session | null }) => {
 		}
 
 		if (caption && uploadedUrls) {
-			const response = await fetch("/api/post/new", {
+			const response = await fetch("https://vortex-neon.vercel.app/api/post/new", {
 				method: "POST",
 				body: JSON.stringify({
 					img: uploadedUrls.url,

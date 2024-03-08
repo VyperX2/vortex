@@ -20,7 +20,7 @@ export default function SearchUser() {
 
 	useEffect(() => {
 		async function getUsers() {
-			const response = await fetch("/api/people", {
+			const response = await fetch("https://vortex-neon.vercel.app/api/people", {
 				method: "GET",
 				cache: "no-store",
 			});

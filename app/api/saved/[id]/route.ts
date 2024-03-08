@@ -14,7 +14,7 @@ export const GET = async (request: Request, { params }: Params) => {
 		const savedPosts = await Promise.all(
 			currentUser.saved.map(async (postId: string) => {
 				const postResponse = await fetch(
-					`/api/posts/${postId}`
+					`https://vortex-neon.vercel.app/api/posts/${postId}`
 				);
 				if (postResponse.ok) {
 					return postResponse.json();

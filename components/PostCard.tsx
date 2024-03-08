@@ -37,7 +37,7 @@ const PostCard = ({
 
 	async function updateLikes(isAdding: boolean) {
 		try {
-			const response = await fetch(`/api/post/${_id}`, {
+			const response = await fetch(`https://vortex-neon.vercel.app/api/post/${_id}`, {
 				method: "PATCH",
 				body: JSON.stringify({
 					userId: session?.user?.id,
@@ -52,7 +52,7 @@ const PostCard = ({
 	}
 	async function updateFollowers(isFollowing: boolean) {
 		try {
-			const response = await fetch(`/api/profile/${creator._id}`, {
+			const response = await fetch(`https://vortex-neon.vercel.app/api/profile/${creator._id}`, {
 				method: "PATCH",
 				body: JSON.stringify({
 					userId: session?.user?.id,
@@ -67,7 +67,7 @@ const PostCard = ({
 	}
 	async function updateSaved(isSaving: boolean) {
 		try {
-			const response = await fetch(`/api/profile/${creator._id}/saved`, {
+			const response = await fetch(`https://vortex-neon.vercel.app/api/profile/${creator._id}/saved`, {
 				method: "PATCH",
 				body: JSON.stringify({
 					postId: _id,
@@ -84,7 +84,7 @@ const PostCard = ({
 
 	async function getFollowers() {
 		try {
-			const response = await fetch(`/api/profile/${session?.user?.id}`, {
+			const response = await fetch(`https://vortex-neon.vercel.app/api/profile/${session?.user?.id}`, {
 				method: "GET",
 			});
 			const data = await response.json();
