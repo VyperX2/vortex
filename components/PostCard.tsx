@@ -37,13 +37,16 @@ const PostCard = ({
 
 	async function updateLikes(isAdding: boolean) {
 		try {
-			const response = await fetch(`https://vortex-neon.vercel.app/api/post/${_id}`, {
-				method: "PATCH",
-				body: JSON.stringify({
-					userId: session?.user?.id,
-					adding: isAdding,
-				}),
-			});
+			const response = await fetch(
+				`https://vortex-neon.vercel.app/api/post/${_id}`,
+				{
+					method: "PATCH",
+					body: JSON.stringify({
+						userId: session?.user?.id,
+						adding: isAdding,
+					}),
+				}
+			);
 			const data = await response.json();
 			setLikeData(data.likes);
 		} catch (error) {
@@ -52,13 +55,16 @@ const PostCard = ({
 	}
 	async function updateFollowers(isFollowing: boolean) {
 		try {
-			const response = await fetch(`https://vortex-neon.vercel.app/api/profile/${creator._id}`, {
-				method: "PATCH",
-				body: JSON.stringify({
-					userId: session?.user?.id,
-					following: isFollowing,
-				}),
-			});
+			const response = await fetch(
+				`https://vortex-neon.vercel.app/api/profile/${creator._id}`,
+				{
+					method: "PATCH",
+					body: JSON.stringify({
+						userId: session?.user?.id,
+						following: isFollowing,
+					}),
+				}
+			);
 			const data = await response.json();
 			setFollowerData(data.followers);
 		} catch (error) {
@@ -67,14 +73,17 @@ const PostCard = ({
 	}
 	async function updateSaved(isSaving: boolean) {
 		try {
-			const response = await fetch(`https://vortex-neon.vercel.app/api/profile/${creator._id}/saved`, {
-				method: "PATCH",
-				body: JSON.stringify({
-					postId: _id,
-					saving: isSaving,
-					userId: session?.user?.id,
-				}),
-			});
+			const response = await fetch(
+				`https://vortex-neon.vercel.app/api/profile/${creator._id}/saved`,
+				{
+					method: "PATCH",
+					body: JSON.stringify({
+						postId: _id,
+						saving: isSaving,
+						userId: session?.user?.id,
+					}),
+				}
+			);
 			const data = await response.json();
 			setSavedData(data.saved);
 		} catch (error) {
@@ -84,9 +93,12 @@ const PostCard = ({
 
 	async function getFollowers() {
 		try {
-			const response = await fetch(`https://vortex-neon.vercel.app/api/profile/${session?.user?.id}`, {
-				method: "GET",
-			});
+			const response = await fetch(
+				`https://vortex-neon.vercel.app/api/profile/${session?.user?.id}`,
+				{
+					method: "GET",
+				}
+			);
 			const data = await response.json();
 			setSavedData(data.user.saved);
 		} catch (error) {
@@ -106,10 +118,10 @@ const PostCard = ({
 				<div className="flex md:flex-row flex-col md:items-center gap-3">
 					<Link
 						className="flex items-center gap-3"
-						href={`/profile/${creator._id}`}
+						href={`/profile/${creator?._id}`}
 					>
 						<Avatar className="h-10 w-10">
-							<AvatarImage src={creator.img} />
+							<AvatarImage src={creator?.img} />
 							<AvatarFallback>
 								{creator?.username[0].toUpperCase()}
 							</AvatarFallback>
