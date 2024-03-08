@@ -3,7 +3,7 @@ import PostCard from "./PostCard";
 import { auth } from "@/lib/auth";
 
 const Feed = async () => {
-	const res = await fetch("https://vortex-neon.vercel.app/api/post", {
+	const res = await fetch("/api/post", {
 		cache: "no-store",
 	});
 	const data: Post[] = await res.json();

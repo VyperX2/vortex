@@ -9,7 +9,7 @@ const SavedFeed = ({ params }: { params: { id: string } }) => {
 	useEffect(() => {
 		const fetchPosts = async () => {
 			const userResponse = await fetch(
-				`https://vortex-neon.vercel.app/api/profile/${params.id}`,
+				`/api/profile/${params.id}`,
 				{
 					cache: "no-store",
 					method: "GET",
@@ -20,7 +20,7 @@ const SavedFeed = ({ params }: { params: { id: string } }) => {
 
 			const postPromises = user.saved.map(async (postId) => {
 				const postResponse = await fetch(
-					`https://vortex-neon.vercel.app/api/post/${postId}`,
+					`/api/post/${postId}`,
 					{
 						cache: "no-store",
 					}
