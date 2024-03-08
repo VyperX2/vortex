@@ -2,7 +2,7 @@ import { connectToDB } from "@/lib/database";
 import User from "@/models/User";
 import { ObjectId } from "mongoose";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
-
+export const dynamic = 'force-dynamic'
 export const GET = async (request: Request, { params }: Params) => {
 	try {
 		await connectToDB();

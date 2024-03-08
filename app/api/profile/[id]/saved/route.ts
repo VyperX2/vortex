@@ -1,7 +1,7 @@
 import { connectToDB } from "@/lib/database";
 import User from "@/models/User";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
-
+export const dynamic = 'force-dynamic'
 export const PATCH = async (request: Request, { params }: Params) => {
 	const { saving, postId, userId } = await request.json();
 	const creator = await User.findOne({ _id: userId });

@@ -1,7 +1,7 @@
 import { connectToDB } from "@/lib/database";
 import Post from "@/models/Post";
 import { NextResponse } from "next/server";
-
+export const dynamic = 'force-dynamic'
 export const GET = async (request: Request) => {
 	try {
 		await connectToDB();

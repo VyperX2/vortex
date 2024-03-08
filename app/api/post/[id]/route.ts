@@ -1,7 +1,7 @@
 import Post from "@/models/Post";
 import { connectToDB } from "@/lib/database";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
-
+export const dynamic = 'force-dynamic'
 export const GET = async (request: Request, { params }: Params) => {
 	try {
 		await connectToDB();

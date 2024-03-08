@@ -1,6 +1,6 @@
 import Post from "@/models/Post";
 import { connectToDB } from "@/lib/database";
-
+export const dynamic = 'force-dynamic'
 export const POST = async (request: Request) => {
 	const { userId, img, caption } = await request.json();
 
