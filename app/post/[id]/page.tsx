@@ -2,7 +2,7 @@ import PostCard from "@/components/PostCard";
 import { auth } from "@/lib/auth";
 
 const PostPage = async ({ params }: { params: { id: string } }) => {
-	const response = await fetch(`https://vortex-neon.vercel.app/api/post/${params.id}`);
+	const response = await fetch(`/api/post/${params.id}`);
 	const data = await response.json();
 	const session = await auth();
 	return (
