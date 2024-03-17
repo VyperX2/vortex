@@ -27,6 +27,10 @@ export const authConfig = {
 			const isOnLoginPage = request.nextUrl?.pathname.startsWith("/login");
 			const isOnHomePage = request.nextUrl?.pathname.startsWith("/");
 
+			if (isOnRegisterPage) {
+				return true;
+			}
+
 			if (isOnHomePage && !user) {
 				return false;
 			}
