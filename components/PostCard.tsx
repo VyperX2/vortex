@@ -107,6 +107,7 @@ const PostCard = ({
 	}
 	useEffect(() => {
 		getFollowers();
+		window.location.reload();
 	}, []);
 
 	return (
