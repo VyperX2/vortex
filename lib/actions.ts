@@ -45,7 +45,17 @@ export const handleRegister = async (
 		});
 
 		await newUser.save();
-		console.log("CREATED NEW USER");
+
+		try {
+			const loginResult = await signIn("credentials", { username, password });
+
+			console.log(loginResult);
+		} catch (error: any) {
+			if (error?.name.includes("CredentialsSignin")) {
+				return { error: "Invalid username or password" };
+			}
+		}
+
 		return { success: true };
 	} catch (error) {
 		console.log(error);
