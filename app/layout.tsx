@@ -29,9 +29,7 @@ export default async function RootLayout({
 					<Sidebar session={session}>
 						<UserDisplay />
 					</Sidebar>
-					<main className="flex-1 pt-4">
-						{children}
-					</main>
+					<main className="flex-1 pt-4">{children}</main>
 				</EdgeStoreProvider>
 			</body>
 		</html>

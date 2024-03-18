@@ -1,3 +1,4 @@
+"use client";
 import { auth } from "@/lib/auth";
 import Link from "next/link";
 import {
@@ -8,11 +9,32 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { handleLogout } from "@/lib/actions";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { useEffect, useState } from "react";
+import { Session } from "next-auth";
 
-const UserDisplay = async () => {
-	const session = await auth();
+const UserDisplay = () => {
+	const [session, setSession] = useState<Session | null>(null);
+
+	useEffect(() => {
+		const fetchSession = async () => {
+			try {
+				console.log("running");
+				const data = await auth();
+				console.log(data);
+				setSession(data);
+			} catch (error) {
+				console.error("Failed to fetch session:", error);
+			}
+		};
+
+		fetchSession();
+	}, []); // Empty dependency array means this effect runs once on mount
+	useEffect(() => {
+		console.log(session);
+	}, [session]);
+
 	return (
-		<>
+		<div>
 			{
 				<DropdownMenu>
 					<DropdownMenuTrigger className="flex items-center gap-4 pl-4 outline-none">
@@ -23,7 +45,6 @@ const UserDisplay = async () => {
 									session?.user?.username[0].toUpperCase()}
 							</AvatarFallback>
 						</Avatar>
-
 						<div className="flex flex-col">
 							<p className="font-semibold">
 								{session?.user?.name || session?.user?.username}
@@ -49,7 +70,7 @@ const UserDisplay = async () => {
 					</DropdownMenuContent>
 				</DropdownMenu>
 			}
-		</>
+		</div>
 	);
 };
 

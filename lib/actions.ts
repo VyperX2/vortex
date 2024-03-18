@@ -1,5 +1,5 @@
 "use server";
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 import User from "@/models/User";
 import { signIn, signOut } from "./auth";
 import { connectToDB } from "./database";

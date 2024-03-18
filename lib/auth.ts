@@ -4,7 +4,7 @@ import { connectToDB } from "./database";
 import User from "@/models/User";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { authConfig } from "./auth.config";
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 
 const login = async (credentials: Partial<Record<string, unknown>>) => {
 	try {
