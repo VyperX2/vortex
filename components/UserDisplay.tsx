@@ -1,6 +1,6 @@
 "use client";
-import { auth } from "@/lib/auth";
 import Link from "next/link";
+import { getSession } from "next-auth/react";
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -11,6 +11,7 @@ import { handleLogout } from "@/lib/actions";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { useEffect, useState } from "react";
 import { Session } from "next-auth";
+import { Skeleton } from "./ui/skeleton";
 
 const UserDisplay = () => {
 	const [session, setSession] = useState<Session | null>(null);
@@ -18,10 +19,9 @@ const UserDisplay = () => {
 	useEffect(() => {
 		const fetchSession = async () => {
 			try {
-				console.log("running");
-				const data = await auth();
-				console.log(data);
-				setSession(data);
+				const session_ = await getSession();
+
+				setSession(session_);
 			} catch (error) {
 				console.error("Failed to fetch session:", error);
 			}
@@ -29,13 +29,10 @@ const UserDisplay = () => {
 
 		fetchSession();
 	}, []); // Empty dependency array means this effect runs once on mount
-	useEffect(() => {
-		console.log(session);
-	}, [session]);
 
 	return (
-		<div>
-			{
+		<>
+			{session ? (
 				<DropdownMenu>
 					<DropdownMenuTrigger className="flex items-center gap-4 pl-4 outline-none">
 						<Avatar className="h-10 w-10">
@@ -69,8 +66,18 @@ const UserDisplay = () => {
 						</DropdownMenuItem>
 					</DropdownMenuContent>
 				</DropdownMenu>
-			}
-		</div>
+			) : (
+				<div>
+					<div className="flex items-center gap-4 pl-4 outline-none">
+						<Skeleton className="h-10 w-10 rounded-full" />
+						<div className="flex flex-col gap-2">
+							<Skeleton className="font-semibold w-24 h-4" />
+							<Skeleton className="font-semibold w-24 h-4" />
+						</div>
+					</div>
+				</div>
+			)}
+		</>
 	);
 };
 

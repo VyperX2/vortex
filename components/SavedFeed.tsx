@@ -10,8 +10,6 @@ const SavedFeed = ({ params }: { params: { id: string } }) => {
 
 	useEffect(() => {
 		const fetchPosts = async () => {
-			console.log("ABOUT TO FETCH");
-			console.log(params.id);
 			const userResponse = await fetch(
 				`https://vortex-neon.vercel.app/api/profile/${params.id}`,
 				{
