@@ -2,11 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "@/styles/globals.css";
 import Sidebar from "@/components/Sidebar";
-import Footer from "@/components/Footer";
 import UserDisplay from "@/components/UserDisplay";
-import Menu from "@/components/Menu";
 import { EdgeStoreProvider } from "@/lib/edgestore";
-import { auth } from "@/lib/auth";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,12 +18,11 @@ export default async function RootLayout({
 }: {
 	children: React.ReactNode;
 }) {
-	const session = await auth();
 	return (
 		<html lang="en">
 			<body className={`dark ${inter.className} flex bg-background`}>
 				<EdgeStoreProvider>
-					<Sidebar session={session}>
+					<Sidebar>
 						<UserDisplay />
 					</Sidebar>
 					<main className="flex-1 pt-4">{children}</main>
