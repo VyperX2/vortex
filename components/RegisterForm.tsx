@@ -1,18 +1,22 @@
 "use client";
 import { Input } from "./ui/input";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import { handleRegister } from "@/lib/actions";
 import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
+import { Spinner } from "./Spinner";
 
 const RegisterForm = () => {
 	const router = useRouter();
 	const [state, formAction] = useFormState(handleRegister, undefined);
-
+	const [loading, setLoading] = useState<boolean>(false);
 	useEffect(() => {
 		if (state?.success) {
 			router.push("/login");
+		}
+		if (state?.error) {
+			setLoading(false);
 		}
 	}, [state]);
 	return (
@@ -25,7 +29,9 @@ const RegisterForm = () => {
 				name="passwordRepeat"
 				placeholder="Confirm Password"
 			/>
-			<Button className="w-full">Register</Button>
+			<Button onClick={() => setLoading(true)} className="w-full">
+				{loading ? <Spinner /> : "Register"}
+			</Button>
 			<p className="text-destructive">{state?.error}</p>
 		</form>
 	);

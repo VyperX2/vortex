@@ -6,10 +6,7 @@ import {
 	CardTitle,
 	CardFooter,
 } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import Link from "next/link";
-import { handleRegister } from "@/lib/actions";
 import RegisterForm from "@/components/RegisterForm";
 const RegisterPage = () => {
 	return (
