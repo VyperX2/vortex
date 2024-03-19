@@ -68,10 +68,7 @@ const Create = ({ session }: { session: Session | null }) => {
 					</CardTitle>
 				</CardHeader>
 				<CardContent>
-					<form
-						onSubmit={(e) => e.preventDefault()}
-						className="flex flex-col items-center gap-4 "
-					>
+					<form className="flex flex-col items-center gap-4 ">
 						<div className="hidden md:block">
 							<SingleImageDropzone
 								width={300}
