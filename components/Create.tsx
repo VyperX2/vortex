@@ -39,14 +39,17 @@ const Create = ({ session }: { session: Session | null }) => {
 		}
 
 		if (caption && uploadedUrls) {
-			const response = await fetch("https://vortex-neon.vercel.app/api/post/new", {
-				method: "POST",
-				body: JSON.stringify({
-					img: uploadedUrls.url,
-					caption: caption,
-					userId: session?.user?.id,
-				}),
-			});
+			const response = await fetch(
+				"https://vortex-neon.vercel.app/api/post/new",
+				{
+					method: "POST",
+					body: JSON.stringify({
+						img: uploadedUrls.url,
+						caption: caption,
+						userId: session?.user?.id,
+					}),
+				}
+			);
 
 			if (response.ok) {
 				router.push("/");
@@ -65,7 +68,10 @@ const Create = ({ session }: { session: Session | null }) => {
 					</CardTitle>
 				</CardHeader>
 				<CardContent>
-					<form className="flex flex-col items-center gap-4 ">
+					<form
+						onSubmit={(e) => e.preventDefault()}
+						className="flex flex-col items-center gap-4 "
+					>
 						<div className="hidden md:block">
 							<SingleImageDropzone
 								width={300}
