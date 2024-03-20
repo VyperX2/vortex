@@ -106,7 +106,7 @@ const Create = ({ session }: { session: Session | null }) => {
 								/>
 							)}
 						</div>
-						<div className="h-[6px] w-44 border rounded overflow-hidden">
+						<div className="h-[6px] w-44  rounded overflow-hidden">
 							<div
 								className=" h-full bg-white transition-all duration-150"
 								style={{ width: `${progress}%` }}
