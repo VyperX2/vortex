@@ -7,8 +7,11 @@ import { useEdgeStore } from "@/lib/edgestore";
 import { SingleImageDropzone } from "./single-image-dropzone";
 import { useRouter } from "next/navigation";
 import { Session } from "next-auth";
+import { Label } from "./ui/label";
+import { Input } from "./ui/input";
 const Create = ({ session }: { session: Session | null }) => {
 	const [isPosting, setIsPosting] = useState<boolean>(false);
+	const [imagePreviewUrl, setImagePreviewUrl] = useState<string>();
 	const [urls, setUrls] = useState<{
 		url: string;
 		thumbnailUrl: string | null;
@@ -80,16 +83,30 @@ const Create = ({ session }: { session: Session | null }) => {
 							/>
 						</div>
 						<div className="block md:hidden">
-							<SingleImageDropzone
-								width={220}
-								height={400}
-								value={file}
-								onChange={(file) => {
-									setFile(file);
+							<Input
+								type="file"
+								accept="image/*"
+								onChange={(e) => {
+									if (e.target.files && e.target.files.length > 0) {
+										const file = e.target.files[0];
+										setFile(file);
+										// Create a URL for the selected file
+										const imageUrl = URL.createObjectURL(file);
+										// Update the state with the image URL for preview
+										setImagePreviewUrl(imageUrl);
+									}
 								}}
 							/>
+							{/* Display the image preview */}
+							{imagePreviewUrl && (
+								<img
+									src={imagePreviewUrl}
+									alt="Selected"
+									className="w-full h-auto mt-3"
+								/>
+							)}
 						</div>
-						<div className="h-[6px] w-44 borer rounded overflow-hidden">
+						<div className="h-[6px] w-44 border rounded overflow-hidden">
 							<div
 								className=" h-full bg-white transition-all duration-150"
 								style={{ width: `${progress}%` }}
