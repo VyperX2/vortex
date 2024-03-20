@@ -4,6 +4,7 @@ import "@/styles/globals.css";
 import Sidebar from "@/components/Sidebar";
 import UserDisplay from "@/components/UserDisplay";
 import { EdgeStoreProvider } from "@/lib/edgestore";
+import Menu from "@/components/Menu";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,8 +20,10 @@ export default async function RootLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<html lang="en">
-			<body className={`dark ${inter.className} flex bg-background`}>
+		<html className="overflow-x-hidden" lang="en">
+			<body
+				className={`dark ${inter.className} flex bg-background overflow-x-hidden`}
+			>
 				<EdgeStoreProvider>
 					<Sidebar>
 						<UserDisplay />

@@ -1,6 +1,7 @@
 import ProfileFeed from "@/components/ProfileFeed";
 import Link from "next/link";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import Menu from "@/components/Menu";
 
 const ProfilePage = async ({ params }: { params: { id: string } }) => {
 	const response = await fetch(
@@ -11,9 +12,12 @@ const ProfilePage = async ({ params }: { params: { id: string } }) => {
 	const { user, posts } = data;
 
 	return (
-		<>
-			<div className="flex justify-evenly  mt-9 items-center overflow-hidden">
-				<div className="flex items-center gap-2">
+		<div className="">
+			<div className="flex flex-row-reverse justify-start mr-12">
+				<Menu />
+			</div>
+			<div className="flex md:flex-row flex-col justify-evenly  mt-9 items-center overflow-hidden">
+				<div className="flex items-center gap-2 mb-6">
 					<Avatar className="h-12 w-12">
 						<AvatarImage src={user.img} />
 						<AvatarFallback>{user?.username[0].toUpperCase()}</AvatarFallback>
@@ -47,7 +51,7 @@ const ProfilePage = async ({ params }: { params: { id: string } }) => {
 				</div>
 			</div>
 			<ProfileFeed posts={posts} />
-		</>
+		</div>
 	);
 };
 export default ProfilePage;
