@@ -7,8 +7,8 @@ import { useEdgeStore } from "@/lib/edgestore";
 import { SingleImageDropzone } from "./single-image-dropzone";
 import { useRouter } from "next/navigation";
 import { Session } from "next-auth";
-import { Label } from "./ui/label";
 import { Input } from "./ui/input";
+import { Spinner } from "./Spinner";
 const Create = ({ session }: { session: Session | null }) => {
 	const [isPosting, setIsPosting] = useState<boolean>(false);
 	const [imagePreviewUrl, setImagePreviewUrl] = useState<string>();
@@ -123,7 +123,7 @@ const Create = ({ session }: { session: Session | null }) => {
 							className="text-lg font-semibold"
 							onClick={handlePost}
 						>
-							{!isPosting ? "Post" : "Posting..."}
+							{!isPosting ? "Post" : <Spinner />}
 						</Button>
 					</form>
 				</CardContent>
